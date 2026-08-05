@@ -1,173 +1,108 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { ArrowRight, Download, Image as ImageIcon, Video, Code2, Sparkles, ChevronRight, Play } from "lucide-react";
+import { Code2, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { fetchDeveloperApps } from "@/lib/playstore";
+import { Portfolio } from "@/components/Portfolio";
 
-const apps = [
-  {
-    name: "Snap Video Downloader",
-    description: "Fast, reliable, and high-quality video downloading across platforms.",
-    icon: <Download className="w-6 h-6 text-blue-400" />,
-    color: "from-blue-500/20 to-blue-900/20",
-    border: "border-blue-500/30",
-    link: "https://play.google.com/store/apps/developer?id=Snap+Video+-+Video+Downloader",
-  },
-  {
-    name: "Snap Video No Watermark",
-    description: "Download your favorite short videos cleanly without any watermarks.",
-    icon: <Video className="w-6 h-6 text-purple-400" />,
-    color: "from-purple-500/20 to-purple-900/20",
-    border: "border-purple-500/30",
-    link: "https://play.google.com/store/apps/developer?id=Snap+Video+-+Video+Downloader",
-  },
-  {
-    name: "Snap Video",
-    description: "The ultimate media companion for offline viewing and sharing.",
-    icon: <Play className="w-6 h-6 text-rose-400" />,
-    color: "from-rose-500/20 to-rose-900/20",
-    border: "border-rose-500/30",
-    link: "https://play.google.com/store/apps/developer?id=Snap+Video+-+Video+Downloader",
-  },
-  {
-    name: "AI Image Generator",
-    description: "Turn your imagination into reality with our powerful AI image engine.",
-    icon: <Sparkles className="w-6 h-6 text-emerald-400" />,
-    color: "from-emerald-500/20 to-emerald-900/20",
-    border: "border-emerald-500/30",
-    link: "https://play.google.com/store/apps/developer?id=Snap+Video+-+Video+Downloader",
-  },
+// We fetch data on the server during build (or dynamically depending on Vercel config)
+export const revalidate = 3600; // revalidate at most every hour
+
+const DEVELOPERS = [
+  "Snap Video - Video Downloader",
+  "La%CC%83+Ti%C3%AA%CC%81n+Tu%CC%80ng", // Lã Tiến Tùng (url encoded)
+  "T%E1%BA%A0+NG%E1%BB%8CC+QU%E1%BB%90C+B%E1%BA%A2O" // TẠ NGỌC QUỐC BẢO
 ];
 
-export default function Home() {
-  return (
-    <main className="min-h-screen bg-black text-slate-50 selection:bg-blue-500/30 flex flex-col items-center overflow-hidden">
-      
-      {/* Background Glows */}
-      <div className="fixed top-[-20%] left-[-10%] w-[500px] h-[500px] rounded-full bg-blue-600/20 blur-[120px] pointer-events-none" />
-      <div className="fixed bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-purple-600/20 blur-[120px] pointer-events-none" />
+export default async function Home() {
+  // Fetch apps from all developers in parallel
+  const allAppsPromises = DEVELOPERS.map(dev => fetchDeveloperApps(dev));
+  const allAppsResults = await Promise.all(allAppsPromises);
+  const allApps = allAppsResults.flat();
 
-      {/* Navbar */}
-      <nav className="w-full max-w-7xl px-6 py-6 flex justify-between items-center z-10 relative">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-            <Code2 className="w-5 h-5 text-white" />
+  return (
+    <main className="min-h-screen bg-[#050505] text-slate-50 selection:bg-blue-500/30 flex flex-col items-center overflow-hidden font-sans">
+      
+      {/* Cinematic Background Elements */}
+      <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+      <div className="fixed top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-blue-600/10 blur-[150px] pointer-events-none" />
+      <div className="fixed bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-purple-600/10 blur-[150px] pointer-events-none" />
+      <div className="fixed top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-emerald-600/5 blur-[150px] pointer-events-none" />
+
+      {/* Glass Navbar */}
+      <nav className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-xl border-b border-white/5 transition-all">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-emerald-500 p-[1px]">
+              <div className="w-full h-full bg-black/50 backdrop-blur-md rounded-[11px] flex items-center justify-center">
+                <Code2 className="w-5 h-5 text-white" />
+              </div>
+            </div>
+            <span className="font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
+              AI Software Studio
+            </span>
           </div>
-          <span className="font-bold text-xl tracking-tight">AI Software Studio</span>
+          <div className="hidden md:flex gap-8 text-sm font-medium text-slate-400">
+            <Link href="#portfolio" className="hover:text-white transition-colors">Portfolio</Link>
+            <Link href="#contact" className="hover:text-white transition-colors">Contact</Link>
+          </div>
+          <a 
+            href="mailto:contact@aisoftwarestudio.co"
+            className="px-6 py-2.5 rounded-full bg-white text-black text-sm font-semibold hover:bg-slate-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+          >
+            Work With Us
+          </a>
         </div>
-        <div className="hidden md:flex gap-8 text-sm font-medium text-slate-400">
-          <Link href="#products" className="hover:text-white transition-colors">Products</Link>
-          <Link href="#contact" className="hover:text-white transition-colors">Contact</Link>
-        </div>
-        <a 
-          href="mailto:contact@aisoftwarestudio.co"
-          className="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/10 text-sm font-medium transition-all backdrop-blur-md"
-        >
-          Get in Touch
-        </a>
       </nav>
 
       {/* Hero Section */}
-      <section className="w-full max-w-7xl px-6 pt-32 pb-40 flex flex-col items-center text-center z-10 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-medium mb-8"
-        >
-          <Sparkles className="w-4 h-4" />
-          <span>Next-generation mobile applications</span>
-        </motion.div>
+      <section className="w-full max-w-7xl px-6 pt-48 pb-32 flex flex-col items-center text-center z-10 relative">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm font-medium mb-8 backdrop-blur-md">
+          <Sparkles className="w-4 h-4 text-purple-400" />
+          <span>Award-winning mobile applications</span>
+        </div>
         
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-tight"
-        >
-          Building the Future of <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400">
-            Digital Experiences
+        <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter mb-8 leading-[1.1]">
+          Crafting the <br className="hidden md:block" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400 animate-gradient-x">
+             Digital Future
           </span>
-        </motion.h1>
+        </h1>
 
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-lg md:text-xl text-slate-400 max-w-2xl mb-12 leading-relaxed"
-        >
-          At AI Software Studio, we craft premium, high-performance mobile applications designed to empower users and simplify everyday tasks.
-        </motion.p>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-4"
-        >
-          <a href="#products" className="px-8 py-4 rounded-full bg-white text-black font-semibold flex items-center justify-center gap-2 hover:bg-slate-200 transition-colors">
-            Explore Our Apps <ArrowRight className="w-4 h-4" />
-          </a>
-          <a href="https://play.google.com/store/apps/developer?id=Snap+Video+-+Video+Downloader" target="_blank" rel="noreferrer" className="px-8 py-4 rounded-full bg-white/5 border border-white/10 font-semibold flex items-center justify-center gap-2 hover:bg-white/10 transition-colors">
-            View on Google Play
-          </a>
-        </motion.div>
+        <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mb-12 leading-relaxed font-light">
+          We are a premier app development studio building high-performance, beautiful, and scalable mobile experiences trusted by millions.
+        </p>
       </section>
 
-      {/* Products Section */}
-      <section id="products" className="w-full max-w-7xl px-6 py-32 z-10 relative">
-        <div className="flex flex-col items-center text-center mb-20">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Featured Products</h2>
+      {/* Live Portfolio Section */}
+      <section id="portfolio" className="w-full max-w-7xl px-6 py-32 z-10 relative border-t border-white/5">
+        <div className="flex flex-col mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Our Portfolio</h2>
           <p className="text-slate-400 max-w-2xl text-lg">
-            Discover our suite of applications trusted by millions of users worldwide. From seamless video downloading to AI-powered creativity.
+            A live showcase of our applications currently available on the Google Play Store, fetched directly in real-time.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {apps.map((app, index) => (
-            <motion.a
-              href={app.link}
-              target="_blank"
-              rel="noreferrer"
-              key={app.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5, scale: 1.01 }}
-              className={`p-8 rounded-3xl bg-gradient-to-br ${app.color} border ${app.border} backdrop-blur-sm group cursor-pointer flex flex-col`}
-            >
-              <div className="w-14 h-14 rounded-2xl bg-black/40 flex items-center justify-center mb-6 border border-white/5">
-                {app.icon}
-              </div>
-              <h3 className="text-2xl font-bold mb-3 group-hover:text-white transition-colors">{app.name}</h3>
-              <p className="text-slate-400 mb-8 flex-grow">{app.description}</p>
-              <div className="flex items-center text-sm font-medium text-white/50 group-hover:text-white transition-colors">
-                <span>View App</span>
-                <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-              </div>
-            </motion.a>
-          ))}
-        </div>
+        <Portfolio apps={allApps} />
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="w-full border-t border-white/10 mt-20 z-10 relative bg-black/50 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-              <Code2 className="w-3 h-3 text-white" />
+      <footer id="contact" className="w-full border-t border-white/10 mt-20 z-10 relative bg-black/80 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 p-[1px]">
+               <div className="w-full h-full bg-black rounded-[7px] flex items-center justify-center">
+                 <Code2 className="w-4 h-4 text-white" />
+               </div>
             </div>
-            <span className="font-bold text-lg tracking-tight">AI Software Studio</span>
+            <span className="font-bold text-xl tracking-tight">AI Software Studio</span>
           </div>
           
-          <div className="text-slate-500 text-sm">
+          <div className="text-slate-500 text-sm font-medium">
             © {new Date().getFullYear()} AI Software Studio. All rights reserved.
           </div>
           
-          <div className="flex gap-4">
-             <a href="https://aisoftwarestudio.co" className="text-sm text-slate-400 hover:text-white transition-colors">aisoftwarestudio.co</a>
+          <div className="flex gap-6">
+             <a href="https://aisoftwarestudio.co" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">aisoftwarestudio.co</a>
+             <a href="mailto:contact@aisoftwarestudio.co" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">contact@aisoftwarestudio.co</a>
           </div>
         </div>
       </footer>

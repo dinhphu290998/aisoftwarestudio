@@ -1,0 +1,1 @@
+﻿const gplay = require('google-play-scraper'); async function test() { try { const apps1 = await gplay.developer({ devId: 'Snap Video - Video Downloader' }); console.log('Found', apps1.length, 'apps for Snap Video'); if(apps1.length > 0) { console.log(apps1[0].title); } } catch (e) { console.error('Error:', e.message); } } test();
