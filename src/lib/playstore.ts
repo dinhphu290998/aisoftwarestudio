@@ -34,16 +34,25 @@ export async function fetchDeveloperApps(devIdEncoded: string): Promise<AppData[
       
       const parent = $(el).parent();
       
-      // Look for text nodes
-      const textNodes = parent.find('span, div').map((_, node) => $(node).text().trim()).get();
-      // Filter out very short strings (like ratings "4.5" or empty) and very long ones
-      const validTexts = textNodes.filter(t => t.length > 2 && t.length < 60 && !t.includes('★'));
+      // Look for text nodes in spans (which separates Title and Dev cleanly)
+      const textNodes = parent.find('span').map((_, node) => $(node).text().trim()).get();
+      const validTexts = textNodes.filter(t => t.length > 0 && !t.includes('★') && t !== 'star');
       
       let title = validTexts[0] || 'Unknown App';
       
-      let icon = parent.find('img').attr('src') || parent.find('img').attr('srcset');
+      // Images: first is usually banner, second is square icon
+      const imgs = parent.find('img').map((_, img) => $(img).attr('src') || $(img).attr('srcset')).get();
+      
+      let icon = '';
+      if (imgs.length > 1) {
+         // Prefer the square icon which usually is the second image or contains '=s'
+         icon = imgs.find(src => src && src.includes('=s')) || imgs[imgs.length - 1];
+      } else if (imgs.length === 1) {
+         icon = imgs[0];
+      }
+      
       if (icon) {
-         icon = icon.split(' ')[0]; // handle srcset
+         icon = icon.split(' ')[0]; // handle srcset format just in case
          if (icon.startsWith('//')) icon = 'https:' + icon;
       } else {
          icon = 'https://via.placeholder.com/150'; // fallback

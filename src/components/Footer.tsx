@@ -1,5 +1,5 @@
 import { Logo } from "./Logo";
-import { Twitter, Linkedin, Github, Mail } from "lucide-react";
+import { Mail, Globe, ArrowRight } from "lucide-react";
 
 export function Footer() {
   return (
@@ -16,14 +16,14 @@ export function Footer() {
               Pioneering the next generation of mobile applications. We blend cutting-edge AI with exceptional user experiences to build software that matters.
             </p>
             <div className="flex gap-4 pt-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-500/20 hover:text-blue-400 transition-all border border-white/5">
-                <Twitter className="w-4 h-4" />
+              <a href="#" className="text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-blue-400 transition-colors">
+                Twitter
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-500/20 hover:text-blue-400 transition-all border border-white/5">
-                <Linkedin className="w-4 h-4" />
+              <a href="#" className="text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-blue-400 transition-colors">
+                LinkedIn
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-500/20 hover:text-blue-400 transition-all border border-white/5">
-                <Github className="w-4 h-4" />
+              <a href="#" className="text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-blue-400 transition-colors">
+                GitHub
               </a>
             </div>
           </div>
