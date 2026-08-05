@@ -44,7 +44,7 @@ export function Header() {
         </div>
 
         <a 
-          href="mailto:contact@aisoftwarestudio.co"
+          href="mailto:aisoftwaresupport@gmail.com"
           className="px-6 py-2.5 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-bold hover:scale-105 transition-transform shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)]"
         >
           Start a Project

@@ -1,5 +1,5 @@
 import { Logo } from "./Logo";
-import { Mail, Globe, ArrowRight } from "lucide-react";
+import { Mail, Phone, Globe, ArrowRight } from "lucide-react";
 
 export function Footer() {
   return (
@@ -45,8 +45,14 @@ export function Footer() {
             <ul className="space-y-4 text-sm text-slate-400">
               <li className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-blue-400" />
-                <a href="mailto:contact@aisoftwarestudio.co" className="hover:text-white transition-colors">
-                  contact@aisoftwarestudio.co
+                <a href="mailto:aisoftwaresupport@gmail.com" className="hover:text-white transition-colors">
+                  aisoftwaresupport@gmail.com
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone className="w-4 h-4 text-blue-400" />
+                <a href="tel:0397460055" className="hover:text-white transition-colors">
+                  0397460055
                 </a>
               </li>
               <li className="flex items-start gap-3">
