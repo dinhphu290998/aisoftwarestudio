@@ -18,6 +18,9 @@ export default async function Home() {
   const allAppsPromises = DEVELOPERS.map(dev => fetchDeveloperApps(dev));
   const allAppsResults = await Promise.all(allAppsPromises);
   const allApps = allAppsResults.flat();
+  
+  // Sort globally across all developers by real installs
+  allApps.sort((a, b) => b.installs - a.installs);
 
   return (
     <main className="min-h-screen bg-[#050505] text-slate-50 selection:bg-blue-500/30 flex flex-col items-center overflow-hidden font-sans">
