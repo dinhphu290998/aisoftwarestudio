@@ -15,27 +15,16 @@ export function Footer() {
             <p className="text-slate-400 text-sm max-w-sm leading-relaxed">
               Pioneering the next generation of mobile applications. We blend cutting-edge AI with exceptional user experiences to build software that matters.
             </p>
-            <div className="flex gap-4 pt-4">
-              <a href="#" className="text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-blue-400 transition-colors">
-                Twitter
-              </a>
-              <a href="#" className="text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-blue-400 transition-colors">
-                LinkedIn
-              </a>
-              <a href="#" className="text-xs font-semibold uppercase tracking-wider text-slate-400 hover:text-blue-400 transition-colors">
-                GitHub
-              </a>
-            </div>
           </div>
 
           {/* Col 2: Links */}
           <div className="space-y-6">
             <h4 className="text-white font-semibold tracking-wide">Company</h4>
             <ul className="space-y-4 text-sm text-slate-400">
-              <li><a href="#portfolio" className="hover:text-blue-400 transition-colors">Our Portfolio</a></li>
-              <li><a href="#services" className="hover:text-blue-400 transition-colors">Services</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Careers</a></li>
+              <li><a href="/#portfolio" className="hover:text-blue-400 transition-colors">Our Portfolio</a></li>
+              <li><a href="/services" className="hover:text-blue-400 transition-colors">Services</a></li>
+              <li><a href="/about" className="hover:text-blue-400 transition-colors">About Us</a></li>
+              <li><a href="/careers" className="hover:text-blue-400 transition-colors">Careers</a></li>
             </ul>
           </div>
 
@@ -69,8 +58,8 @@ export function Footer() {
         <div className="w-full mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-slate-500">
           <p>© {new Date().getFullYear()} AI Software Studio. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <a href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="/terms-of-service" className="hover:text-white transition-colors">Terms of Service</a>
           </div>
         </div>
       </div>

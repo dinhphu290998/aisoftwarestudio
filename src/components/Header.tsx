@@ -29,15 +29,15 @@ export function Header() {
         </Link>
         
         <div className="hidden md:flex items-center gap-10 text-sm font-medium text-slate-400">
-          <Link href="#portfolio" className="hover:text-white transition-colors relative group">
+          <Link href="/#portfolio" className="hover:text-white transition-colors relative group">
             Portfolio
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full" />
           </Link>
-          <Link href="#services" className="hover:text-white transition-colors relative group">
+          <Link href="/services" className="hover:text-white transition-colors relative group">
             Services
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full" />
           </Link>
-          <Link href="#contact" className="hover:text-white transition-colors relative group">
+          <Link href="/#contact" className="hover:text-white transition-colors relative group">
             Contact
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full" />
           </Link>
