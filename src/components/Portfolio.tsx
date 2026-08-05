@@ -22,34 +22,6 @@ export function Portfolio({ apps }: PortfolioProps) {
     index === self.findIndex((t) => t.link === app.link)
   );
 
-  // Hardcoded priority list based on most downloads
-  const downloadPriority = [
-    "Snap Video Downloader",
-    "Snap Video",
-    "Snap Video No Watermark",
-    "AI Image Generator",
-    "Idols Call Prank: Fake Call",
-    "Emotes Viewer Skin",
-    "Hyper Browse - Private Web",
-    "Emotes Viewer Skin Tools",
-    "TV Remote - Smart Universal"
-  ];
-
-  // Sort uniqueApps based on the priority list
-  uniqueApps = uniqueApps.sort((a, b) => {
-    const aIndex = downloadPriority.findIndex(p => a.title.includes(p));
-    const bIndex = downloadPriority.findIndex(p => b.title.includes(p));
-    
-    // If both are found in the priority list, sort by their index
-    if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
-    // If only 'a' is found, 'a' comes first
-    if (aIndex !== -1) return -1;
-    // If only 'b' is found, 'b' comes first
-    if (bIndex !== -1) return 1;
-    // If neither is found, sort alphabetically or keep original order
-    return 0;
-  });
-
   return (
     <div className="w-full">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

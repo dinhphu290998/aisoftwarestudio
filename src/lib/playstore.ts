@@ -1,10 +1,13 @@
 import * as cheerio from 'cheerio';
+// Using require to avoid TS import issues with commonjs packages
+const gplay = require('google-play-scraper').default || require('google-play-scraper');
 
 export interface AppData {
   title: string;
   link: string;
   icon: string;
   developerId: string;
+  installs: number;
 }
 
 export async function fetchDeveloperApps(devIdEncoded: string): Promise<AppData[]> {
@@ -25,7 +28,7 @@ export async function fetchDeveloperApps(devIdEncoded: string): Promise<AppData[
 
     const html = await response.text();
     const $ = cheerio.load(html);
-    const apps: AppData[] = [];
+    const basicApps: { title: string, link: string, icon: string, id: string }[] = [];
     const seenLinks = new Set<string>();
 
     $('a[href^="/store/apps/details"]').each((_, el) => {
@@ -45,7 +48,6 @@ export async function fetchDeveloperApps(devIdEncoded: string): Promise<AppData[
       
       let icon = '';
       if (imgs.length > 1) {
-         // Prefer the square icon which usually is the second image or contains '=s'
          icon = imgs.find(src => src && src.includes('=s')) || imgs[imgs.length - 1];
       } else if (imgs.length === 1) {
          icon = imgs[0];
@@ -58,19 +60,44 @@ export async function fetchDeveloperApps(devIdEncoded: string): Promise<AppData[
          icon = 'https://via.placeholder.com/150'; // fallback
       }
 
-      // Add if valid
       if (title && icon) {
         seenLinks.add(link);
-        apps.push({
-          title,
-          link: `https://play.google.com${link}`,
-          icon,
-          developerId: devIdEncoded
-        });
+        const appIdMatch = link.match(/id=([^&]+)/);
+        const appId = appIdMatch ? appIdMatch[1] : '';
+        if (appId) {
+          basicApps.push({
+            title,
+            link: `https://play.google.com${link}`,
+            icon,
+            id: appId
+          });
+        }
       }
     });
 
-    return apps;
+    // Now fetch real download counts for all found apps concurrently
+    const appsWithInstalls: AppData[] = await Promise.all(
+      basicApps.map(async (app) => {
+        let installs = 0;
+        try {
+          const details = await gplay.app({ appId: app.id });
+          installs = details.minInstalls || 0;
+        } catch (e) {
+          console.error(`Error fetching details for ${app.id}:`, e);
+        }
+        return {
+          title: app.title,
+          link: app.link,
+          icon: app.icon,
+          developerId: devIdEncoded,
+          installs
+        };
+      })
+    );
+
+    // Sort by installs descending
+    return appsWithInstalls.sort((a, b) => b.installs - a.installs);
+
   } catch (error) {
     console.error("Error fetching apps for", devIdEncoded, error);
     return [];
