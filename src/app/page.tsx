@@ -1,7 +1,8 @@
-import { Code2, Sparkles } from "lucide-react";
-import Link from "next/link";
+import { Sparkles } from "lucide-react";
 import { fetchDeveloperApps } from "@/lib/playstore";
 import { Portfolio } from "@/components/Portfolio";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 // We fetch data on the server during build (or dynamically depending on Vercel config)
 export const revalidate = 3600; // revalidate at most every hour
@@ -27,34 +28,10 @@ export default async function Home() {
       <div className="fixed bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-purple-600/10 blur-[150px] pointer-events-none" />
       <div className="fixed top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-emerald-600/5 blur-[150px] pointer-events-none" />
 
-      {/* Glass Navbar */}
-      <nav className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-xl border-b border-white/5 transition-all">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-emerald-500 p-[1px]">
-              <div className="w-full h-full bg-black/50 backdrop-blur-md rounded-[11px] flex items-center justify-center">
-                <Code2 className="w-5 h-5 text-white" />
-              </div>
-            </div>
-            <span className="font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
-              AI Software Studio
-            </span>
-          </div>
-          <div className="hidden md:flex gap-8 text-sm font-medium text-slate-400">
-            <Link href="#portfolio" className="hover:text-white transition-colors">Portfolio</Link>
-            <Link href="#contact" className="hover:text-white transition-colors">Contact</Link>
-          </div>
-          <a 
-            href="mailto:contact@aisoftwarestudio.co"
-            className="px-6 py-2.5 rounded-full bg-white text-black text-sm font-semibold hover:bg-slate-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]"
-          >
-            Work With Us
-          </a>
-        </div>
-      </nav>
+      <Header />
 
       {/* Hero Section */}
-      <section className="w-full max-w-7xl px-6 pt-48 pb-32 flex flex-col items-center text-center z-10 relative">
+      <section className="w-full max-w-7xl px-6 pt-52 pb-32 flex flex-col items-center text-center z-10 relative">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm font-medium mb-8 backdrop-blur-md">
           <Sparkles className="w-4 h-4 text-purple-400" />
           <span>Award-winning mobile applications</span>
@@ -84,28 +61,7 @@ export default async function Home() {
         <Portfolio apps={allApps} />
       </section>
 
-      {/* Footer */}
-      <footer id="contact" className="w-full border-t border-white/10 mt-20 z-10 relative bg-black/80 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6 py-16 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 p-[1px]">
-               <div className="w-full h-full bg-black rounded-[7px] flex items-center justify-center">
-                 <Code2 className="w-4 h-4 text-white" />
-               </div>
-            </div>
-            <span className="font-bold text-xl tracking-tight">AI Software Studio</span>
-          </div>
-          
-          <div className="text-slate-500 text-sm font-medium">
-            © {new Date().getFullYear()} AI Software Studio. All rights reserved.
-          </div>
-          
-          <div className="flex gap-6">
-             <a href="https://aisoftwarestudio.co" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">aisoftwarestudio.co</a>
-             <a href="mailto:contact@aisoftwarestudio.co" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">contact@aisoftwarestudio.co</a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }
