@@ -31,7 +31,7 @@ export default async function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section className="w-full max-w-7xl px-6 pt-52 pb-32 flex flex-col items-center text-center z-10 relative">
+      <section className="w-full max-w-7xl px-6 pt-32 pb-16 min-h-[90vh] flex flex-col items-center justify-center text-center z-10 relative">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm font-medium mb-8 backdrop-blur-md">
           <Sparkles className="w-4 h-4 text-purple-400" />
           <span>Award-winning mobile applications</span>
