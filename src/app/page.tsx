@@ -5,7 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 // We fetch data on the server during build (or dynamically depending on Vercel config)
-export const revalidate = 3600; // revalidate at most every hour
+export const revalidate = 600; // revalidate at most every 10 minutes
 
 const DEVELOPERS = [
   "Snap Video - Video Downloader",
