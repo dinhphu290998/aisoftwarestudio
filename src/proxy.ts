@@ -22,10 +22,11 @@ export function proxy(request: NextRequest) {
   const hostname = request.headers.get("host") || "";
   
   // Exclude static assets that might bypass the matcher somehow
+  // but ALLOW /app-ads.txt to pass through so we can serve it dynamically per partner
   if (
     url.pathname.startsWith("/_next") ||
     url.pathname.startsWith("/api") ||
-    url.pathname.includes(".")
+    (url.pathname.includes(".") && url.pathname !== "/app-ads.txt")
   ) {
     return NextResponse.next();
   }
