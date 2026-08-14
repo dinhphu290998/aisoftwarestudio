@@ -23,10 +23,11 @@ export function proxy(request: NextRequest) {
   
   // Exclude static assets that might bypass the matcher somehow
   // but ALLOW /app-ads.txt to pass through so we can serve it dynamically per partner
+  const isStaticFile = /\.(png|jpe?g|gif|svg|webp|ico|woff2?|ttf|eot|css|js|txt)$/i.test(url.pathname);
   if (
     url.pathname.startsWith("/_next") ||
     url.pathname.startsWith("/api") ||
-    (url.pathname.includes(".") && url.pathname !== "/app-ads.txt")
+    (isStaticFile && url.pathname !== "/app-ads.txt")
   ) {
     return NextResponse.next();
   }
