@@ -9,8 +9,8 @@ export const revalidate = 600; // revalidate at most every 10 minutes
 
 const DEVELOPERS = [
   "Snap Video - Video Downloader",
-  "La%CC%83+Ti%C3%AA%CC%81n+Tu%CC%80ng", // Lã Tiến Tùng (url encoded)
-  "T%E1%BA%A0+NG%E1%BB%8CC+QU%E1%BB%90C+B%E1%BA%A2O" // TẠ NGỌC QUỐC BẢO
+  "AI+Software+Partner",
+  "Inception+-+AI+Software"
 ];
 
 export default async function Home() {
