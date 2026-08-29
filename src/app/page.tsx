@@ -8,7 +8,6 @@ import { Footer } from "@/components/Footer";
 export const revalidate = 600; // revalidate at most every 10 minutes
 
 const DEVELOPERS = [
-  "Snap Video - Video Downloader",
   "AI+Software+Partner",
   "Inception+-+AI+Software"
 ];
