@@ -13,6 +13,9 @@ facebook.com, 1513178796088195, DIRECT, c3e20eee3f780d68
 vungle.com, 6602814a5e79b800114ac41f, DIRECT, c107d686becd2d77
 facebook.com, 1275721507343225, DIRECT, c3e20eee3f780d68`;
 
+const AMOBEAR_ADS = `google.com, pub-1932904583211332, DIRECT, f08c47fec0942fa0
+facebook.com, 411776127249763, DIRECT, c3e20eee3f780d68`;
+
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ subdomain: string }> }
@@ -24,6 +27,8 @@ export async function GET(
 
   if (subdomain === "inception") {
     content = INCEPTION_ADS;
+  } else if (subdomain === "amobear") {
+    content = AMOBEAR_ADS;
   } else {
     // Default fallback if a partner doesn't have an app-ads.txt configured yet
     content = "# No app-ads.txt configured for this subdomain.";
