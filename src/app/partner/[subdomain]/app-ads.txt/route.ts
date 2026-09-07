@@ -19,6 +19,15 @@ facebook.com, 411776127249763, DIRECT, c3e20eee3f780d68`;
 const UNISOFT_ADS = `facebook.com, 411776127249763, DIRECT, c3e20eee3f780d68
 google.com, pub-4226576672608638, DIRECT, f08c47fec0942fa0`;
 
+const ONETABB_ADS = `google.com, pub-4664159291930779, DIRECT, f08c47fec0942fa0
+
+# Meta Audience Network
+facebook.com, 1554061462519613, RESELLER, c3e20eee3f780d68
+
+# Pangle
+pangleglobal.com, 5037889, DIRECT
+pubmatic.com, 161490, RESELLER, 5d62403b186f2ace`;
+
 export async function GET(
   request: Request,
   { params }: { params: Promise<{ subdomain: string }> }
@@ -34,6 +43,8 @@ export async function GET(
     content = AMOBEAR_ADS;
   } else if (subdomain === "unisoft") {
     content = UNISOFT_ADS;
+  } else if (subdomain === "1tabb") {
+    content = ONETABB_ADS;
   } else {
     // Default fallback if a partner doesn't have an app-ads.txt configured yet
     content = "# No app-ads.txt configured for this subdomain.";
