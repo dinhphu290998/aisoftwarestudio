@@ -28,7 +28,7 @@ facebook.com, 1554061462519613, RESELLER, c3e20eee3f780d68
 pangleglobal.com, 5037889, DIRECT
 pubmatic.com, 161490, RESELLER, 5d62403b186f2ace`;
 
-const AFFICA_ADS = `google.com, pub-2843552789470483, DIRECT, f08c47fec0942fa0
+export const AFFICA_ADS = `google.com, pub-2843552789470483, DIRECT, f08c47fec0942fa0
 facebook.com, 848223676623042, DIRECT, c3e20eee3f780d68
 vungle.com, 6524f826b3ff7d001153c80a, DIRECT, c107d686becd2d77
 pokkt.com, 6246, RESELLER, c45702d9311e25fd
