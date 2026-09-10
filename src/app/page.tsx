@@ -3,6 +3,7 @@ import { fetchDeveloperApps } from "@/lib/playstore";
 import { Portfolio } from "@/components/Portfolio";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { Contact } from "@/components/Contact";
 
 // We fetch data on the server during build (or dynamically depending on Vercel config)
 export const revalidate = 600; // revalidate at most every 10 minutes
@@ -62,6 +63,8 @@ export default async function Home() {
 
         <Portfolio apps={allApps} />
       </section>
+
+      <Contact />
 
       <Footer />
     </main>
