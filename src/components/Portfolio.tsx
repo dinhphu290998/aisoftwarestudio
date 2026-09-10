@@ -85,10 +85,7 @@ export function Portfolio({ apps }: PortfolioProps) {
                 <h4 className="text-base font-semibold text-slate-100 truncate group-hover:text-blue-400 transition-colors" title={app.title}>
                   {app.title}
                 </h4>
-                <p className="text-[13px] text-slate-400 truncate mt-0.5" title={app.developer || "Developer"}>
-                  {app.developer || "AI Software Studio"}
-                </p>
-                <div className="flex items-center gap-1.5 mt-1 text-[12px] text-slate-500 font-medium">
+                <div className="flex items-center gap-1.5 mt-1 text-[13px] text-slate-400 font-medium">
                   {app.scoreText && (
                     <span className="flex items-center gap-0.5">
                       {app.scoreText} <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
