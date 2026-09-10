@@ -1,6 +1,5 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Contact } from "@/components/Contact";
 
 // We use async params to get the [subdomain] from the URL
 interface PageProps {
@@ -43,15 +42,13 @@ export default async function PartnerPage({ params }: PageProps) {
               <p className="text-slate-400 text-sm mb-4">
                 As a verified partner, you receive priority support from our engineering team.
               </p>
-              <a href="#contact" className="text-blue-400 text-sm hover:underline">
+              <a href="https://aisoftwarestudio.co/#contact" className="text-blue-400 text-sm hover:underline">
                 Contact Support →
               </a>
             </div>
           </div>
         </div>
       </section>
-
-      <Contact />
 
       <Footer />
     </main>
