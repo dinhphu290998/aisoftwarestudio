@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, Download, Star } from "lucide-react";
+import { Download, Star, ExternalLink } from "lucide-react";
 import type { AppData } from "@/lib/playstore";
 
 interface PortfolioProps {
@@ -32,7 +32,7 @@ export function Portfolio({ apps }: PortfolioProps) {
 
   return (
     <div className="w-full">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
         {uniqueApps.map((app, index) => (
           <motion.a
             href={app.link}
@@ -42,49 +42,58 @@ export function Portfolio({ apps }: PortfolioProps) {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: index * 0.05, ease: "easeOut" }}
-            whileHover={{ y: -10 }}
-            className="group relative flex flex-col p-1 rounded-[2rem] bg-gradient-to-b from-white/10 to-white/0 hover:from-blue-500/30 hover:to-purple-500/30 transition-all duration-500"
+            transition={{ duration: 0.5, delay: index * 0.05, ease: "easeOut" }}
+            className="group flex flex-col gap-4 cursor-pointer"
           >
-            {/* Inner Card Container for Gradient Border Effect */}
-            <div className="relative flex flex-col h-full bg-[#0a0a0a]/90 backdrop-blur-xl rounded-[1.8rem] p-6 overflow-hidden border border-white/5 group-hover:border-transparent transition-colors">
-              
-              {/* Dynamic Glow Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 via-purple-500/0 to-emerald-500/0 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-emerald-500/10 transition-all duration-700 opacity-0 group-hover:opacity-100" />
-              
-              {/* Top Section: Icon & Badge */}
-              <div className="relative z-10 flex justify-between items-start mb-6">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-blue-500/20 blur-xl rounded-full group-hover:bg-blue-400/40 transition-colors duration-500" />
-                  <div className="relative w-20 h-20 rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/20 bg-black/50 group-hover:ring-white/40 transition-all duration-500 transform group-hover:scale-105">
-                    <img 
-                      src={app.icon} 
-                      alt={app.title} 
-                      className="w-full h-full object-cover" 
-                    />
-                  </div>
+            {/* Cover Image Container */}
+            <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-white/5 border border-white/10 shadow-lg ring-1 ring-white/5 group-hover:ring-blue-500/40 transition-all duration-300">
+              {app.headerImage ? (
+                <img 
+                  src={app.headerImage} 
+                  alt={app.title + " cover"}
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 group-hover:scale-105 transition-transform duration-500 flex items-center justify-center text-white/30 text-sm">
+                  No Cover Available
                 </div>
-                
-                {/* Installs Badge */}
-                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-emerald-400 backdrop-blur-md group-hover:bg-emerald-500/10 group-hover:border-emerald-500/30 transition-colors">
-                  <Download className="w-3.5 h-3.5" />
-                  <span>{formatInstalls(app.installs)}</span>
-                </div>
+              )}
+              
+              <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[11px] font-semibold text-white/90">
+                <Download className="w-3.5 h-3.5 text-emerald-400" />
+                <span>{formatInstalls(app.installs)}</span>
               </div>
+              
+              {/* Overlay on hover */}
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                 <div className="opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 bg-blue-600 text-white p-3.5 rounded-full shadow-xl">
+                    <ExternalLink className="w-5 h-5" />
+                 </div>
+              </div>
+            </div>
 
-              {/* Content Section */}
-              <div className="relative z-10 flex flex-col flex-grow">
-                <h4 className="text-xl font-bold mb-3 text-white/90 group-hover:text-white line-clamp-2 leading-snug tracking-tight">
+            {/* App Info row (Icon + Details) */}
+            <div className="flex items-start gap-4 px-1">
+              <div className="relative shrink-0 w-16 h-16 rounded-[22.5%] overflow-hidden border border-white/10 shadow-md group-hover:shadow-blue-500/20 transition-all">
+                <img 
+                  src={app.icon} 
+                  alt={app.title + " icon"} 
+                  className="w-full h-full object-cover" 
+                />
+              </div>
+              <div className="flex flex-col min-w-0 flex-grow justify-center min-h-[64px]">
+                <h4 className="text-base font-semibold text-slate-100 truncate group-hover:text-blue-400 transition-colors" title={app.title}>
                   {app.title}
                 </h4>
-                
-                <div className="mt-auto pt-6 flex items-center justify-between text-sm font-medium">
-                  <span className="text-slate-400 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
-                    View on Play Store
-                  </span>
-                  <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 group-hover:text-white text-white/40 transition-all duration-300 transform group-hover:translate-x-1">
-                    <ExternalLink className="w-4 h-4" />
-                  </div>
+                <p className="text-[13px] text-slate-400 truncate mt-0.5" title={app.developer || "Developer"}>
+                  {app.developer || "AI Software Studio"}
+                </p>
+                <div className="flex items-center gap-1.5 mt-1 text-[12px] text-slate-500 font-medium">
+                  {app.scoreText && (
+                    <span className="flex items-center gap-0.5">
+                      {app.scoreText} <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    </span>
+                  )}
                 </div>
               </div>
             </div>

@@ -8,6 +8,9 @@ export interface AppData {
   icon: string;
   developerId: string;
   installs: number;
+  headerImage?: string;
+  scoreText?: string;
+  developer?: string;
 }
 
 export async function fetchDeveloperApps(devIdEncoded: string): Promise<AppData[]> {
@@ -79,9 +82,15 @@ export async function fetchDeveloperApps(devIdEncoded: string): Promise<AppData[
     const appsWithInstalls: AppData[] = await Promise.all(
       basicApps.map(async (app) => {
         let installs = 0;
+        let headerImage = '';
+        let scoreText = '';
+        let developer = '';
         try {
           const details = await gplay.app({ appId: app.id });
           installs = details.minInstalls || 0;
+          headerImage = details.headerImage || '';
+          scoreText = details.scoreText || '';
+          developer = details.developer || '';
         } catch (e) {
           console.error(`Error fetching details for ${app.id}:`, e);
         }
@@ -90,7 +99,10 @@ export async function fetchDeveloperApps(devIdEncoded: string): Promise<AppData[
           link: app.link,
           icon: app.icon,
           developerId: devIdEncoded,
-          installs
+          installs,
+          headerImage,
+          scoreText,
+          developer
         };
       })
     );
