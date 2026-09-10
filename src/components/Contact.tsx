@@ -1,11 +1,26 @@
 "use client";
 
-import { Mail, MapPin, Phone, ArrowRight, Loader2 } from "lucide-react";
+import { Mail, MapPin, Phone, ArrowRight, Loader2, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success">("idle");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("success") === "true") {
+        setStatus("success");
+        // Remove the success param from URL without refreshing
+        const newUrl = window.location.pathname + window.location.hash;
+        window.history.replaceState({}, document.title, newUrl);
+        
+        setTimeout(() => setStatus("idle"), 5000);
+      }
+    }
+  }, []);
 
   return (
     <section id="contact" className="w-full max-w-7xl px-6 py-32 z-10 relative border-t border-white/5">
@@ -101,12 +116,26 @@ export function Contact() {
             onSubmit={() => setIsSubmitting(true)}
             className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl shadow-2xl flex flex-col gap-6 relative overflow-hidden"
           >
+            {status === "success" && (
+              <motion.div 
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                className="absolute inset-0 bg-[#0a0a0a]/90 backdrop-blur-sm z-20 flex flex-col items-center justify-center text-center p-8"
+              >
+                <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mb-4">
+                  <CheckCircle2 className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
+                <p className="text-slate-400">Thanks for reaching out. We'll get back to you shortly.</p>
+              </motion.div>
+            )}
+
             <h3 className="text-2xl font-semibold mb-2">Send a Message</h3>
             
             {/* FormSubmit Configuration */}
             <input type="hidden" name="_subject" value="New Contact Message from AI Software Studio" />
             <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_next" value="https://aisoftwarestudio.co/#contact" />
+            <input type="hidden" name="_next" value="https://aisoftwarestudio.co/?success=true#contact" />
             
             <div className="flex flex-col gap-2">
               <label className="text-sm text-slate-400 font-medium px-1">Your Name</label>
