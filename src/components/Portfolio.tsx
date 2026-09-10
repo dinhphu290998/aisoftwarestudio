@@ -59,10 +59,12 @@ export function Portfolio({ apps }: PortfolioProps) {
                 </div>
               )}
               
-              <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[11px] font-semibold text-white/90">
-                <Download className="w-3.5 h-3.5 text-emerald-400" />
-                <span>{formatInstalls(app.installs)}</span>
-              </div>
+              {app.installs >= 1000 && (
+                <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[11px] font-semibold text-white/90">
+                  <Download className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>{formatInstalls(app.installs)}</span>
+                </div>
+              )}
               
               {/* Overlay on hover */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
@@ -85,13 +87,9 @@ export function Portfolio({ apps }: PortfolioProps) {
                 <h4 className="text-base font-semibold text-slate-100 truncate group-hover:text-blue-400 transition-colors" title={app.title}>
                   {app.title}
                 </h4>
-                <div className="flex items-center gap-1.5 mt-1 text-[13px] text-slate-400 font-medium">
-                  {app.scoreText && (
-                    <span className="flex items-center gap-0.5">
-                      {app.scoreText} <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                    </span>
-                  )}
-                </div>
+                <p className="text-[13px] text-slate-400 truncate mt-0.5">
+                  AI Software Studio
+                </p>
               </div>
             </div>
           </motion.a>
