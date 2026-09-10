@@ -28,27 +28,24 @@ export function Header() {
           <Logo />
         </Link>
         
-        <div className="hidden md:flex items-center gap-10 text-sm font-medium text-slate-400">
-          <Link href="/#portfolio" className="hover:text-white transition-colors relative group">
+        <div className="hidden md:flex items-center gap-8">
+          <a href="https://aisoftwarestudio.co/#portfolio" className="text-sm text-slate-300 hover:text-white transition-colors">
             Portfolio
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full" />
-          </Link>
-          <Link href="/services" className="hover:text-white transition-colors relative group">
+          </a>
+          <a href="https://aisoftwarestudio.co/services" className="text-sm text-slate-300 hover:text-white transition-colors">
             Services
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full" />
-          </Link>
-          <Link href="/#contact" className="hover:text-white transition-colors relative group">
+          </a>
+          <a href="https://aisoftwarestudio.co/#contact" className="text-sm text-slate-300 hover:text-white transition-colors">
             Contact
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full" />
-          </Link>
+          </a>
         </div>
 
-        <Link 
-          href="/#contact"
+        <a 
+          href="https://aisoftwarestudio.co/#contact"
           className="px-6 py-2.5 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-bold hover:scale-105 transition-transform shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.6)]"
         >
           Start a Project
-        </Link>
+        </a>
       </div>
     </motion.nav>
   );
