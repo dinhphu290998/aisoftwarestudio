@@ -10,8 +10,7 @@ export const revalidate = 600; // revalidate at most every 10 minutes
 
 const DEVELOPERS = [
   "Snap Video - Video Downloader",
-  "AI+Software+Partner",
-  "GoPlay+Tech"
+  "AI+Software+Partner"
 ];
 
 export default async function Home() {
