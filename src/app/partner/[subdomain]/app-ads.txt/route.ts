@@ -20,6 +20,7 @@ const UNISOFT_ADS = `google.com, pub-4226576672608638, DIRECT, f08c47fec0942fa0
 facebook.com, 411776127249763, DIRECT, c3e20eee3f780d68`;
 
 const ONETABB_ADS = `google.com, pub-4664159291930779, DIRECT, f08c47fec0942fa0
+google.com, pub-2701366067425803, DIRECT, f08c47fec0942fa0
 
 # Meta Audience Network
 facebook.com, 1554061462519613, RESELLER, c3e20eee3f780d68
