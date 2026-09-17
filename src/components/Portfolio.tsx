@@ -82,7 +82,7 @@ export function Portfolio({ apps }: PortfolioProps) {
                   {app.title}
                 </h4>
                 <p className="text-[13px] text-slate-400 truncate mt-0.5">
-                  AI Software Studio
+                  {app.developerId === "GoPlay+Tech" ? "AI Software Studio Partner" : "AI Software Studio"}
                 </p>
               </div>
             </div>
