@@ -92,8 +92,8 @@ export function Portfolio({ apps }: PortfolioProps) {
                 </p>
                 {app.updated && (
                   <div className="flex items-center gap-1.5 mt-1.5 text-emerald-400">
-                    <Calendar className="w-3.5 h-3.5" />
-                    <p className="text-[13px] font-medium truncate">
+                    <Calendar className="w-4 h-4" />
+                    <p className="text-sm font-medium truncate">
                       Cập nhật: {app.updated}
                     </p>
                   </div>
