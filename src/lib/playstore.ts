@@ -11,6 +11,7 @@ export interface AppData {
   headerImage?: string;
   scoreText?: string;
   developer?: string;
+  updated?: string;
 }
 
 export async function fetchDeveloperApps(devIdEncoded: string): Promise<AppData[]> {
@@ -85,12 +86,21 @@ export async function fetchDeveloperApps(devIdEncoded: string): Promise<AppData[
         let headerImage = '';
         let scoreText = '';
         let developer = '';
+        let updated = '';
         try {
           const details = await gplay.app({ appId: app.id });
           installs = details.minInstalls || 0;
           headerImage = details.headerImage || '';
           scoreText = details.scoreText || '';
           developer = details.developer || '';
+          
+          if (details.updated) {
+             updated = new Date(details.updated).toLocaleDateString('vi-VN', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+             });
+          }
         } catch (e) {
           console.error(`Error fetching details for ${app.id}:`, e);
         }
@@ -102,7 +112,8 @@ export async function fetchDeveloperApps(devIdEncoded: string): Promise<AppData[
           installs,
           headerImage,
           scoreText,
-          developer
+          developer,
+          updated
         };
       })
     );
