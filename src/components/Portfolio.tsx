@@ -59,7 +59,13 @@ export function Portfolio({ apps }: PortfolioProps) {
                 </div>
               )}
               
-              
+              {app.installs >= 1000 && (
+                <div className="absolute top-3 right-3 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/95 backdrop-blur-md shadow-[0_4px_12px_rgba(16,185,129,0.3)] border border-emerald-400/50 text-[12px] font-bold text-white tracking-wide z-10">
+                  <Download className="w-4 h-4" />
+                  <span>{formatInstalls(app.installs)}</span>
+                </div>
+              )}
+
               {/* Overlay on hover */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
                  <div className="opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 bg-blue-600 text-white p-3.5 rounded-full shadow-xl">
