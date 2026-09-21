@@ -85,7 +85,7 @@ export function Portfolio({ apps }: PortfolioProps) {
                   {app.developerId === "GoPlay+Tech" ? "AI Software Studio Partner" : "AI Software Studio"}
                 </p>
                 {app.updated && (
-                  <p className="text-[11px] text-slate-500 truncate mt-0.5">
+                  <p className="text-[13px] text-slate-400 truncate mt-0.5">
                     Cập nhật: {app.updated}
                   </p>
                 )}

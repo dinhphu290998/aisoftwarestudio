@@ -21,8 +21,13 @@ export default async function Home() {
   const allAppsResults = await Promise.all(allAppsPromises);
   const allApps = allAppsResults.flat();
   
-  // Sort globally across all developers by real installs
-  allApps.sort((a, b) => b.installs - a.installs);
+  // Sort globally across all developers by real installs, then by updated date
+  allApps.sort((a, b) => {
+    if (b.installs !== a.installs) {
+      return b.installs - a.installs;
+    }
+    return (b.updatedTimestamp || 0) - (a.updatedTimestamp || 0);
+  });
 
   return (
     <main className="min-h-screen bg-[#050505] text-slate-50 selection:bg-blue-500/30 flex flex-col items-center overflow-hidden font-sans">

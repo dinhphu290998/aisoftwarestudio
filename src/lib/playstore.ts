@@ -12,6 +12,7 @@ export interface AppData {
   scoreText?: string;
   developer?: string;
   updated?: string;
+  updatedTimestamp?: number;
 }
 
 export async function fetchDeveloperApps(devIdEncoded: string): Promise<AppData[]> {
@@ -87,6 +88,7 @@ export async function fetchDeveloperApps(devIdEncoded: string): Promise<AppData[
         let scoreText = '';
         let developer = '';
         let updated = '';
+        let updatedTimestamp = 0;
         try {
           const details = await gplay.app({ appId: app.id });
           installs = details.minInstalls || 0;
@@ -95,7 +97,9 @@ export async function fetchDeveloperApps(devIdEncoded: string): Promise<AppData[
           developer = details.developer || '';
           
           if (details.updated) {
-             updated = new Date(details.updated).toLocaleDateString('vi-VN', {
+             const d = new Date(details.updated);
+             updatedTimestamp = d.getTime();
+             updated = d.toLocaleDateString('vi-VN', {
                 year: 'numeric',
                 month: 'short',
                 day: 'numeric'
@@ -113,7 +117,8 @@ export async function fetchDeveloperApps(devIdEncoded: string): Promise<AppData[
           headerImage,
           scoreText,
           developer,
-          updated
+          updated,
+          updatedTimestamp
         };
       })
     );
