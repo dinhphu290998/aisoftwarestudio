@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, Star, ExternalLink } from "lucide-react";
+import { Download, Star, ExternalLink, Calendar } from "lucide-react";
 import type { AppData } from "@/lib/playstore";
 
 interface PortfolioProps {
@@ -91,9 +91,12 @@ export function Portfolio({ apps }: PortfolioProps) {
                   {app.developerId === "GoPlay+Tech" ? "AI Software Studio Partner" : "AI Software Studio"}
                 </p>
                 {app.updated && (
-                  <p className="text-[13px] text-slate-400 truncate mt-0.5">
-                    Cập nhật: {app.updated}
-                  </p>
+                  <div className="flex items-center gap-1.5 mt-1.5 text-emerald-400">
+                    <Calendar className="w-3.5 h-3.5" />
+                    <p className="text-[13px] font-medium truncate">
+                      Cập nhật: {app.updated}
+                    </p>
+                  </div>
                 )}
               </div>
             </div>
