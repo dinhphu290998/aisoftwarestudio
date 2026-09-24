@@ -4,6 +4,7 @@ import { Portfolio } from "@/components/Portfolio";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Contact } from "@/components/Contact";
+import { InteractiveBackground } from "@/components/InteractiveBackground";
 
 // We fetch data on the server during build (or dynamically depending on Vercel config)
 export const revalidate = 600; // revalidate at most every 10 minutes
@@ -30,13 +31,9 @@ export default async function Home() {
   });
 
   return (
-    <main className="min-h-screen bg-[#050505] text-slate-50 selection:bg-blue-500/30 flex flex-col items-center overflow-hidden font-sans">
+    <main className="min-h-screen bg-transparent text-slate-50 selection:bg-blue-500/30 flex flex-col items-center overflow-hidden font-sans">
       
-      {/* Cinematic Background Elements */}
-      <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
-      <div className="fixed top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-blue-600/10 blur-[150px] pointer-events-none" />
-      <div className="fixed bottom-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-purple-600/10 blur-[150px] pointer-events-none" />
-      <div className="fixed top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-emerald-600/5 blur-[150px] pointer-events-none" />
+      <InteractiveBackground />
 
       <Header />
 
@@ -54,16 +51,25 @@ export default async function Home() {
           </span>
         </h1>
 
-        <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mb-12 leading-relaxed font-light">
+        <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mb-14 leading-relaxed font-light">
           We are a premier app development studio building high-performance, beautiful, and scalable mobile experiences trusted by millions.
         </p>
         
         <a 
           href="#portfolio"
-          className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 rounded-full text-white font-semibold text-lg hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(124,58,237,0.3)] hover:shadow-[0_0_50px_rgba(124,58,237,0.5)]"
+          className="group relative inline-flex items-center justify-center gap-3 px-10 py-4 rounded-full font-semibold text-lg overflow-hidden transition-all duration-500 hover:scale-[1.02] active:scale-[0.98]"
         >
-          <span>View Our Portfolio</span>
-          <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
+          {/* Outer glow */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500 opacity-20 blur-xl group-hover:opacity-60 transition-opacity duration-500" />
+          
+          {/* Solid background with gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 via-purple-600/90 to-emerald-600/90 backdrop-blur-md border border-white/20 group-hover:border-white/40 transition-colors duration-500 rounded-full" />
+          
+          {/* Animated shine effect */}
+          <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+
+          <span className="relative z-10 text-white tracking-wide">Explore Our Work</span>
+          <ArrowDown className="relative z-10 w-5 h-5 text-white group-hover:translate-y-1 transition-transform duration-300" />
         </a>
       </section>
 
