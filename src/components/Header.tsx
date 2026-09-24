@@ -29,13 +29,13 @@ export function Header() {
         </Link>
         
         <div className="hidden md:flex items-center gap-8">
-          <a href="https://aisoftwarestudio.co/#portfolio" className="text-sm text-slate-300 hover:text-white transition-colors">
+          <a href="https://aisoftwarestudio.co/#portfolio" className="text-base font-medium text-slate-300 hover:text-white transition-colors">
             Portfolio
           </a>
-          <a href="https://aisoftwarestudio.co/services" className="text-sm text-slate-300 hover:text-white transition-colors">
+          <a href="https://aisoftwarestudio.co/services" className="text-base font-medium text-slate-300 hover:text-white transition-colors">
             Services
           </a>
-          <a href="https://aisoftwarestudio.co/#contact" className="text-sm text-slate-300 hover:text-white transition-colors">
+          <a href="https://aisoftwarestudio.co/#contact" className="text-base font-medium text-slate-300 hover:text-white transition-colors">
             Contact
           </a>
         </div>
