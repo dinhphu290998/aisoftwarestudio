@@ -37,12 +37,13 @@ export function InteractiveBackground() {
         className="absolute inset-0 opacity-100"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(99, 102, 241, 0.4) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(99, 102, 241, 0.4) 1px, transparent 1px)
+            linear-gradient(to right, rgba(129, 140, 248, 0.8) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(129, 140, 248, 0.8) 1px, transparent 1px)
           `,
           backgroundSize: '40px 40px',
-          WebkitMaskImage: `radial-gradient(250px circle at ${mousePosition.x}px ${mousePosition.y}px, black, transparent)`,
-          maskImage: `radial-gradient(250px circle at ${mousePosition.x}px ${mousePosition.y}px, black, transparent)`
+          WebkitMaskImage: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, black, transparent)`,
+          maskImage: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, black, transparent)`,
+          filter: 'drop-shadow(0 0 6px rgba(99, 102, 241, 0.8)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.5))'
         }}
       />
       
@@ -50,12 +51,12 @@ export function InteractiveBackground() {
       <div 
         className="absolute rounded-full pointer-events-none"
         style={{
-          width: '300px',
-          height: '300px',
-          left: mousePosition.x - 150,
-          top: mousePosition.y - 150,
-          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.6) 0%, rgba(168, 85, 247, 0.3) 30%, transparent 70%)',
-          filter: 'blur(30px)',
+          width: '500px',
+          height: '500px',
+          left: mousePosition.x - 250,
+          top: mousePosition.y - 250,
+          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.7) 0%, rgba(168, 85, 247, 0.4) 25%, transparent 60%)',
+          filter: 'blur(40px)',
           mixBlendMode: 'screen',
           transition: 'left 0.1s ease-out, top 0.1s ease-out'
         }}
