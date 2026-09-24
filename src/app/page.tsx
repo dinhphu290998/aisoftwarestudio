@@ -1,4 +1,4 @@
-import { Sparkles } from "lucide-react";
+import { Sparkles, ArrowDown } from "lucide-react";
 import { fetchDeveloperApps } from "@/lib/playstore";
 import { Portfolio } from "@/components/Portfolio";
 import { Header } from "@/components/Header";
@@ -57,6 +57,14 @@ export default async function Home() {
         <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mb-12 leading-relaxed font-light">
           We are a premier app development studio building high-performance, beautiful, and scalable mobile experiences trusted by millions.
         </p>
+        
+        <a 
+          href="#portfolio"
+          className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-blue-600 via-purple-600 to-emerald-600 rounded-full text-white font-semibold text-lg hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(124,58,237,0.3)] hover:shadow-[0_0_50px_rgba(124,58,237,0.5)]"
+        >
+          <span>View Our Portfolio</span>
+          <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
+        </a>
       </section>
 
       {/* Live Portfolio Section */}
