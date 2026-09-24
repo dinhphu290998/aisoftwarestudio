@@ -17,10 +17,13 @@ export function InteractiveBackground() {
         y: e.clientY 
       });
 
-      // Parallax effect on the grid variables
       if (containerRef.current) {
-        containerRef.current.style.setProperty('--mouse-x', `${x * 20}px`);
-        containerRef.current.style.setProperty('--mouse-y', `${y * 20}px`);
+        // Translate for parallax
+        containerRef.current.style.setProperty('--mouse-x', `${-x * 30}px`);
+        containerRef.current.style.setProperty('--mouse-y', `${-y * 30}px`);
+        // Rotate for 3D tilt
+        containerRef.current.style.setProperty('--rotate-y', `${x * 10}deg`);
+        containerRef.current.style.setProperty('--rotate-x', `${-y * 10}deg`);
       }
     };
 
@@ -32,27 +35,34 @@ export function InteractiveBackground() {
     <div 
       ref={containerRef}
       className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden bg-[#050505]"
+      style={{ perspective: "1000px" }}
     >
-      {/* Moving Grid */}
+      {/* 3D Moving Grid */}
       <div 
-        className="absolute inset-[-100px] w-[calc(100%+200px)] h-[calc(100%+200px)] opacity-40 transition-transform duration-200 ease-out"
+        className="absolute inset-[-50%] w-[200%] h-[200%] opacity-30 transition-transform duration-100 ease-out"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)
+            linear-gradient(to right, rgba(255,255,255,0.07) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.07) 1px, transparent 1px)
           `,
-          backgroundSize: '40px 40px',
-          transform: `translate(var(--mouse-x, 0), var(--mouse-y, 0))`
+          backgroundSize: '60px 60px',
+          transformStyle: "preserve-3d",
+          transform: `
+            translate(var(--mouse-x, 0), var(--mouse-y, 0)) 
+            rotateX(var(--rotate-x, 0)) 
+            rotateY(var(--rotate-y, 0))
+          `
         }}
-      />
-      
-      {/* Mouse Spotlight */}
-      <div 
-        className="absolute inset-0 transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(29, 78, 216, 0.15), transparent 80%)`,
-        }}
-      />
+      >
+        {/* Glow directly on the grid surface following mouse */}
+        <div 
+           className="absolute inset-0 transition-opacity duration-150"
+           style={{
+             background: `radial-gradient(800px circle at calc(25% + ${mousePosition.x}px) calc(25% + ${mousePosition.y}px), rgba(99, 102, 241, 0.25), transparent 60%)`,
+             transform: 'translateZ(1px)' // Keeps it slightly above grid
+           }}
+        />
+      </div>
       
       {/* Additional ambient blobs */}
       <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-blue-600/10 blur-[150px]" />
