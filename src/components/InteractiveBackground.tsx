@@ -1,30 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function InteractiveBackground() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: -1000, y: -1000 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      // Calculate normalized mouse position from -1 to 1
-      const x = (e.clientX / window.innerWidth) * 2 - 1;
-      const y = (e.clientY / window.innerHeight) * 2 - 1;
-      
       setMousePosition({ 
         x: e.clientX, 
         y: e.clientY 
       });
-
-      if (containerRef.current) {
-        // Translate for parallax
-        containerRef.current.style.setProperty('--mouse-x', `${-x * 30}px`);
-        containerRef.current.style.setProperty('--mouse-y', `${-y * 30}px`);
-        // Rotate for 3D tilt
-        containerRef.current.style.setProperty('--rotate-y', `${x * 10}deg`);
-        containerRef.current.style.setProperty('--rotate-x', `${-y * 10}deg`);
-      }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -32,37 +18,48 @@ export function InteractiveBackground() {
   }, []);
 
   return (
-    <div 
-      ref={containerRef}
-      className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden bg-[#050505]"
-      style={{ perspective: "1000px" }}
-    >
-      {/* 3D Moving Grid */}
+    <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden bg-[#050505]">
+      
+      {/* Base Grid (Faint) */}
       <div 
-        className="absolute inset-[-50%] w-[200%] h-[200%] opacity-30 transition-transform duration-100 ease-out"
+        className="absolute inset-0 opacity-20"
         style={{
           backgroundImage: `
-            linear-gradient(to right, rgba(255,255,255,0.07) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.07) 1px, transparent 1px)
+            linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)
           `,
-          backgroundSize: '60px 60px',
-          transformStyle: "preserve-3d",
-          transform: `
-            translate(var(--mouse-x, 0), var(--mouse-y, 0)) 
-            rotateX(var(--rotate-x, 0)) 
-            rotateY(var(--rotate-y, 0))
-          `
+          backgroundSize: '40px 40px',
         }}
-      >
-        {/* Glow directly on the grid surface following mouse */}
-        <div 
-           className="absolute inset-0 transition-opacity duration-150"
-           style={{
-             background: `radial-gradient(800px circle at calc(25% + ${mousePosition.x}px) calc(25% + ${mousePosition.y}px), rgba(99, 102, 241, 0.25), transparent 60%)`,
-             transform: 'translateZ(1px)' // Keeps it slightly above grid
-           }}
-        />
-      </div>
+      />
+      
+      {/* Highlighted Grid (Revealed by cursor) */}
+      <div 
+        className="absolute inset-0 opacity-100"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(99, 102, 241, 0.4) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(99, 102, 241, 0.4) 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px',
+          WebkitMaskImage: `radial-gradient(250px circle at ${mousePosition.x}px ${mousePosition.y}px, black, transparent)`,
+          maskImage: `radial-gradient(250px circle at ${mousePosition.x}px ${mousePosition.y}px, black, transparent)`
+        }}
+      />
+      
+      {/* Glowing Ball at Cursor */}
+      <div 
+        className="absolute rounded-full pointer-events-none"
+        style={{
+          width: '300px',
+          height: '300px',
+          left: mousePosition.x - 150,
+          top: mousePosition.y - 150,
+          background: 'radial-gradient(circle, rgba(99, 102, 241, 0.6) 0%, rgba(168, 85, 247, 0.3) 30%, transparent 70%)',
+          filter: 'blur(30px)',
+          mixBlendMode: 'screen',
+          transition: 'left 0.1s ease-out, top 0.1s ease-out'
+        }}
+      />
       
       {/* Additional ambient blobs */}
       <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-blue-600/10 blur-[150px]" />
