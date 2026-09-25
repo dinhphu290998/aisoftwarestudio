@@ -1,24 +1,58 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export function InteractiveBackground() {
-  const [mousePosition, setMousePosition] = useState({ x: -1000, y: -1000 });
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let rafId: number;
+    let targetX = -1000;
+    let targetY = -1000;
+    let currentX = -1000;
+    let currentY = -1000;
+    
+    // Lerp factor for smoothness (0.15 provides a nice, buttery trail)
+    const ease = 0.15;
+
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ 
-        x: e.clientX, 
-        y: e.clientY 
-      });
+      targetX = e.clientX;
+      targetY = e.clientY;
+      
+      // Snapping immediately on first movement to avoid the ball flying in from the corner
+      if (currentX === -1000) {
+        currentX = targetX;
+        currentY = targetY;
+      }
+    };
+
+    const animate = () => {
+      // Linear interpolation
+      currentX += (targetX - currentX) * ease;
+      currentY += (targetY - currentY) * ease;
+
+      if (containerRef.current) {
+        // Update CSS variables directly to avoid React state re-renders (much faster)
+        containerRef.current.style.setProperty('--mouse-x', `${currentX}px`);
+        containerRef.current.style.setProperty('--mouse-y', `${currentY}px`);
+      }
+      rafId = requestAnimationFrame(animate);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    animate();
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden bg-[#050505]">
+    <div 
+      ref={containerRef}
+      className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden bg-[#050505]"
+    >
       
       {/* Base Grid (Faint) */}
       <div 
@@ -32,7 +66,7 @@ export function InteractiveBackground() {
         }}
       />
       
-      {/* Highlighted Grid (Revealed by cursor) */}
+      {/* Highlighted Grid (Revealed by cursor via mask) */}
       <div 
         className="absolute inset-0 opacity-100"
         style={{
@@ -41,24 +75,23 @@ export function InteractiveBackground() {
             linear-gradient(to bottom, rgba(129, 140, 248, 0.8) 1px, transparent 1px)
           `,
           backgroundSize: '40px 40px',
-          WebkitMaskImage: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, black, transparent)`,
-          maskImage: `radial-gradient(400px circle at ${mousePosition.x}px ${mousePosition.y}px, black, transparent)`,
+          WebkitMaskImage: `radial-gradient(400px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px), black, transparent)`,
+          maskImage: `radial-gradient(400px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px), black, transparent)`,
           filter: 'drop-shadow(0 0 6px rgba(99, 102, 241, 0.8)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.5))'
         }}
       />
       
       {/* Glowing Ball at Cursor */}
       <div 
-        className="absolute rounded-full pointer-events-none"
+        className="absolute top-0 left-0 rounded-full pointer-events-none"
         style={{
           width: '500px',
           height: '500px',
-          left: mousePosition.x - 250,
-          top: mousePosition.y - 250,
+          transform: 'translate(calc(var(--mouse-x, -1000px) - 250px), calc(var(--mouse-y, -1000px) - 250px))',
           background: 'radial-gradient(circle, rgba(99, 102, 241, 0.7) 0%, rgba(168, 85, 247, 0.4) 25%, transparent 60%)',
           filter: 'blur(40px)',
           mixBlendMode: 'screen',
-          transition: 'left 0.1s ease-out, top 0.1s ease-out'
+          willChange: 'transform' // Hardware acceleration
         }}
       />
       
