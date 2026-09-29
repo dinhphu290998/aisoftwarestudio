@@ -24,6 +24,7 @@ google.com, pub-2701366067425803, DIRECT, f08c47fec0942fa0
 
 # Meta Audience Network
 facebook.com, 1554061462519613, RESELLER, c3e20eee3f780d68
+facebook.com, 904564589187395, DIRECT, c3e20eee3f780d68
 
 # Pangle
 pangleglobal.com, 5037889, DIRECT
