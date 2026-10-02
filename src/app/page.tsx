@@ -13,7 +13,8 @@ const DEVELOPERS = [
   "Snap Video - Video Downloader",
   "AI+Software+Partner",
   "Inception+-+AI+Software",
-  "GoPlay+Tech"
+  "GoPlay+Tech",
+  "AI+Software+Entertainment"
 ];
 
 export default async function Home() {
