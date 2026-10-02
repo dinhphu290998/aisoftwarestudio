@@ -6,8 +6,8 @@ import { Footer } from "@/components/Footer";
 import { Contact } from "@/components/Contact";
 import { InteractiveBackground } from "@/components/InteractiveBackground";
 
-// We fetch data on the server during build (or dynamically depending on Vercel config)
-export const revalidate = 600; // revalidate at most every 10 minutes
+// We fetch data on the server. Cache is set to 60 seconds to ensure fresh data while avoiding rate-limiting.
+export const revalidate = 60; 
 
 const DEVELOPERS = [
   "Snap Video - Video Downloader",
