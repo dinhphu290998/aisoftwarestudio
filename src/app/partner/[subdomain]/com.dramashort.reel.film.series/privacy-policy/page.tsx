@@ -5,10 +5,12 @@ export default async function PrivacyPolicy({ params }: { params: Promise<{ subd
   const { subdomain: rawSubdomain } = await params;
   const subdomain = rawSubdomain?.toLowerCase();
 
-  // Ensure this page is only accessible for the affica partner
-  if (subdomain !== "affica") {
+  // Ensure this page is only accessible for the allowed partners
+  if (subdomain !== "affica" && subdomain !== "mindx") {
     notFound();
   }
+
+  const partnerName = subdomain === "mindx" ? "MindX" : "Affica";
 
   return (
     <main className="min-h-screen bg-[#050505] text-slate-300 py-24 px-6 font-sans relative overflow-hidden flex flex-col items-center">
@@ -36,7 +38,7 @@ export default async function PrivacyPolicy({ params }: { params: Promise<{ subd
           </p>
 
           <p>
-            Welcome to <strong className="text-white">Drama Mini - Shorts Movie</strong>. Your privacy is critically important to us. This Privacy Policy explains how <strong className="text-white">Affica</strong> (the "Developer", "we", "us", or "our") collects, uses, discloses, and safeguards your information when you use our mobile application.
+            Welcome to <strong className="text-white">Drama Mini - Shorts Movie</strong>. Your privacy is critically important to us. This Privacy Policy explains how <strong className="text-white">{partnerName}</strong> (the "Developer", "we", "us", or "our") collects, uses, discloses, and safeguards your information when you use our mobile application.
           </p>
 
           <section>
@@ -87,7 +89,7 @@ export default async function PrivacyPolicy({ params }: { params: Promise<{ subd
           <section>
             <h2 className="text-2xl font-bold text-white/90 mb-4">7. Contact Us</h2>
             <p>
-              If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact <strong>Affica</strong> at <a href="mailto:aisoftwaresupport@gmail.com" className="text-blue-400 hover:text-blue-300 transition-colors">aisoftwaresupport@gmail.com</a>.
+              If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact <strong>{partnerName}</strong> at <a href="mailto:aisoftwaresupport@gmail.com" className="text-blue-400 hover:text-blue-300 transition-colors">aisoftwaresupport@gmail.com</a>.
             </p>
           </section>
         </div>
