@@ -30,6 +30,8 @@ facebook.com, 904564589187395, DIRECT, c3e20eee3f780d68
 pangleglobal.com, 5037889, DIRECT
 pubmatic.com, 161490, RESELLER, 5d62403b186f2ace`;
 
+const MINDX_ADS = `google.com, pub-2562536857962079, DIRECT, f08c47fec0942fa0`;
+
 export const AFFICA_ADS = `google.com, pub-2843552789470483, DIRECT, f08c47fec0942fa0
 google.com, pub-2493259373308464, DIRECT, f08c47fec0942fa0
 facebook.com, 848223676623042, DIRECT, c3e20eee3f780d68
@@ -614,6 +616,8 @@ export async function GET(
     content = ONETABB_ADS;
   } else if (subdomain === "affica") {
     content = AFFICA_ADS;
+  } else if (subdomain === "mindx") {
+    content = MINDX_ADS;
   } else {
     // Default fallback if a partner doesn't have an app-ads.txt configured yet
     content = "# No app-ads.txt configured for this subdomain.";
