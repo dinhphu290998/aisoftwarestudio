@@ -14,7 +14,8 @@ const DEVELOPERS = [
   "AI+Software+Partner",
   "Inception+-+AI+Software",
   "GoPlay+Tech",
-  "AI+Software+Entertainment"
+  "AI+Software+Entertainment",
+  "AI+SOFTWARE+STUDIO"
 ];
 
 export default async function Home() {
