@@ -17,6 +17,7 @@ const AMOBEAR_ADS = `google.com, pub-1932904583211332, DIRECT, f08c47fec0942fa0
 facebook.com, 411776127249763, DIRECT, c3e20eee3f780d68`;
 
 const UNISOFT_ADS = `google.com, pub-4226576672608638, DIRECT, f08c47fec0942fa0
+google.com, pub-5417263955398589, DIRECT, f08c47fec0942fa0
 facebook.com, 411776127249763, DIRECT, c3e20eee3f780d68`;
 
 const ONETABB_ADS = `google.com, pub-4664159291930779, DIRECT, f08c47fec0942fa0
