@@ -1,8 +1,28 @@
 import React from 'react';
+import { notFound } from 'next/navigation';
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
-export default function PrivacyPolicy() {
+export default async function PrivacyPolicy({ params }: { params: Promise<{ subdomain: string }> }) {
+  const { subdomain: rawSubdomain } = await params;
+  const subdomain = rawSubdomain?.toLowerCase();
+
+  let partnerName = "AI Software Studio";
+  if (subdomain === "inception") {
+    partnerName = "Inception - AI Software";
+  } else if (subdomain === "affica") {
+    partnerName = "Affica";
+  } else if (subdomain === "unisoft") {
+    partnerName = "Unisoft";
+  } else if (subdomain === "1tabb") {
+    partnerName = "1TABB";
+  } else if (subdomain === "amobear") {
+    partnerName = "Amobear";
+  } else if (subdomain === "mindx") {
+    partnerName = "MindX";
+  } else {
+    notFound();
+  }
   return (
     <main className="min-h-screen bg-[#050505] text-slate-300 flex flex-col font-sans relative overflow-hidden">
       {/* Cinematic Background Elements */}
@@ -36,7 +56,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <p>
-              This policy explains how the <strong className="text-white">IPTV</strong> application ("IPTV", "the app") handles information. IPTV is published by <strong className="text-white">AI Software Studio</strong> ("we", "us").
+              This policy explains how the <strong className="text-white">IPTV</strong> application ("IPTV", "the app") handles information. IPTV is published by <strong className="text-white">{partnerName}</strong> ("we", "us").
             </p>
 
             <section>
