@@ -35,9 +35,8 @@ export function Header() {
           <a href="https://aisoftwarestudio.co/services" className="text-base font-medium text-slate-300 hover:text-white transition-colors">
             Services
           </a>
-          <a href="https://aisoftwarestudio.co/reviews" className="text-base font-medium text-slate-300 hover:text-white transition-colors flex items-center gap-1.5">
-            <span>Tech Reviews</span>
-            <span className="px-1.5 py-0.5 text-[10px] uppercase font-bold rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Gear</span>
+          <a href="https://aisoftwarestudio.co/reviews" className="text-base font-medium text-slate-300 hover:text-white transition-colors">
+            Reviews
           </a>
           <a href="https://aisoftwarestudio.co/#contact" className="text-base font-medium text-slate-300 hover:text-white transition-colors">
             Contact

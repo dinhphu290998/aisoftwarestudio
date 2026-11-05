@@ -23,7 +23,7 @@ export function Footer() {
             <ul className="space-y-4 text-sm text-slate-400">
               <li><a href="https://aisoftwarestudio.co/#portfolio" className="hover:text-blue-400 transition-colors">Our Portfolio</a></li>
               <li><a href="https://aisoftwarestudio.co/services" className="hover:text-blue-400 transition-colors">Services</a></li>
-              <li><a href="https://aisoftwarestudio.co/reviews" className="hover:text-amber-400 transition-colors flex items-center gap-1.5"><span>Tech Reviews</span><span className="text-[10px] px-1.5 py-0.2 bg-amber-500/20 text-amber-300 rounded font-semibold">Gear</span></a></li>
+              <li><a href="https://aisoftwarestudio.co/reviews" className="hover:text-blue-400 transition-colors">Reviews & Gear</a></li>
               <li><a href="https://aisoftwarestudio.co/about" className="hover:text-blue-400 transition-colors">About Us</a></li>
             </ul>
           </div>
