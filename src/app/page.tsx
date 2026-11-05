@@ -164,7 +164,16 @@ export default async function Home() {
             
             {/* Pick 1 */}
             <div className="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-amber-500/30 transition-all flex flex-col justify-between space-y-4">
-              <div className="space-y-2">
+              <div className="space-y-3">
+                <div className="w-full aspect-[4/3] rounded-xl bg-white/[0.02] p-2 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/products/fire-tv-4k-max.jpg" 
+                    alt="Amazon Fire TV Stick 4K Max" 
+                    className="max-h-full max-w-full object-contain" 
+                    loading="lazy" 
+                    decoding="async" 
+                  />
+                </div>
                 <div className="flex items-center justify-between text-[11px]">
                   <span className="px-2 py-0.5 rounded-md bg-amber-500/20 text-amber-300 font-bold">Best Seller</span>
                   <span className="text-emerald-400 font-semibold">Prime</span>
@@ -188,7 +197,16 @@ export default async function Home() {
 
             {/* Pick 2 */}
             <div className="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-amber-500/30 transition-all flex flex-col justify-between space-y-4">
-              <div className="space-y-2">
+              <div className="space-y-3">
+                <div className="w-full aspect-[4/3] rounded-xl bg-white/[0.02] p-2 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/products/anker-prime-100w-gan.jpg" 
+                    alt="Anker Prime 100W GaN Charger" 
+                    className="max-h-full max-w-full object-contain" 
+                    loading="lazy" 
+                    decoding="async" 
+                  />
+                </div>
                 <div className="flex items-center justify-between text-[11px]">
                   <span className="px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-300 font-bold">Fast Charging</span>
                   <span className="text-emerald-400 font-semibold">Prime</span>
@@ -212,7 +230,16 @@ export default async function Home() {
 
             {/* Pick 3 */}
             <div className="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-amber-500/30 transition-all flex flex-col justify-between space-y-4">
-              <div className="space-y-2">
+              <div className="space-y-3">
+                <div className="w-full aspect-[4/3] rounded-xl bg-white/[0.02] p-2 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/products/sony-wh1000xm5.jpg" 
+                    alt="Sony WH-1000XM5 Headphones" 
+                    className="max-h-full max-w-full object-contain" 
+                    loading="lazy" 
+                    decoding="async" 
+                  />
+                </div>
                 <div className="flex items-center justify-between text-[11px]">
                   <span className="px-2 py-0.5 rounded-md bg-purple-500/20 text-purple-300 font-bold">Premium ANC</span>
                   <span className="text-emerald-400 font-semibold">Prime</span>
@@ -236,7 +263,16 @@ export default async function Home() {
 
             {/* Pick 4 */}
             <div className="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-amber-500/30 transition-all flex flex-col justify-between space-y-4">
-              <div className="space-y-2">
+              <div className="space-y-3">
+                <div className="w-full aspect-[4/3] rounded-xl bg-white/[0.02] p-2 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src="/products/nvidia-shield-tv-pro.jpg" 
+                    alt="NVIDIA Shield TV Pro" 
+                    className="max-h-full max-w-full object-contain" 
+                    loading="lazy" 
+                    decoding="async" 
+                  />
+                </div>
                 <div className="flex items-center justify-between text-[11px]">
                   <span className="px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 font-bold">Pro Cinema</span>
                   <span className="text-emerald-400 font-semibold">Prime</span>
