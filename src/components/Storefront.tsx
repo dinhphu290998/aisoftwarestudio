@@ -2,6 +2,8 @@
 
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
+import { ComparisonShowdown } from "./ComparisonShowdown";
+import { BuyingGuides } from "./BuyingGuides";
 import { 
   ShoppingBag, 
   Search, 
@@ -22,7 +24,9 @@ import {
   Info,
   Clock,
   Zap,
-  Tag
+  Tag,
+  Scale,
+  BookOpen
 } from "lucide-react";
 
 export interface StoreProduct {
@@ -614,6 +618,38 @@ export function Storefront() {
           </div>
         </div>
 
+        {/* Section Quick Jump Bar */}
+        <div className="flex flex-wrap items-center gap-2 mb-8 p-1.5 rounded-2xl bg-white/[0.03] border border-white/10 w-fit">
+          <a
+            href="#products"
+            className="px-4 py-2 rounded-xl text-xs font-bold text-white bg-white/10 hover:bg-white/15 flex items-center gap-2 transition-all shadow-sm"
+          >
+            <ShoppingBag className="w-3.5 h-3.5 text-amber-400" />
+            <span>Product Deals</span>
+          </a>
+          <a
+            href="#comparisons"
+            className="px-4 py-2 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-all"
+          >
+            <Scale className="w-3.5 h-3.5 text-blue-400" />
+            <span>Head-to-Head Comparisons</span>
+          </a>
+          <a
+            href="#guides"
+            className="px-4 py-2 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-all"
+          >
+            <BookOpen className="w-3.5 h-3.5 text-emerald-400" />
+            <span>SEO Buyer&apos;s Guides</span>
+          </a>
+          <a
+            href="#faq"
+            className="px-4 py-2 rounded-xl text-xs font-bold text-slate-300 hover:text-white hover:bg-white/5 flex items-center gap-2 transition-all"
+          >
+            <Info className="w-3.5 h-3.5 text-purple-400" />
+            <span>Shopping FAQ</span>
+          </a>
+        </div>
+
         {/* Search & Filter Bar */}
         <div className="flex flex-col lg:flex-row gap-4 items-center justify-between pb-6 border-b border-white/10">
           
@@ -718,7 +754,7 @@ export function Storefront() {
       </section>
 
       {/* Product Catalog Grid */}
-      <section className="w-full max-w-7xl mx-auto px-6 py-10 z-10 relative">
+      <section id="products" className="w-full max-w-7xl mx-auto px-6 py-10 z-10 relative">
         {filteredProducts.length === 0 ? (
           <div className="text-center py-24 space-y-4">
             <div className="w-16 h-16 mx-auto rounded-full bg-white/5 flex items-center justify-center text-slate-400">
@@ -983,6 +1019,16 @@ export function Storefront() {
           </div>
         </div>
       )}
+
+      {/* Comparison Showdowns Section */}
+      <section id="comparisons" className="w-full max-w-7xl mx-auto px-6 py-16 z-10 relative border-t border-white/5">
+        <ComparisonShowdown />
+      </section>
+
+      {/* SEO Buying Guides & FAQ Section */}
+      <section id="guides" className="w-full max-w-7xl mx-auto px-6 py-16 z-10 relative border-t border-white/5">
+        <BuyingGuides />
+      </section>
 
       {/* Footer Storefront Notice */}
       <section className="w-full max-w-7xl mx-auto px-6 pb-24 z-10 relative">
