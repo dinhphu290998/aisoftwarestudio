@@ -23,6 +23,7 @@ export function Footer() {
             <ul className="space-y-4 text-sm text-slate-400">
               <li><a href="https://aisoftwarestudio.co/#portfolio" className="hover:text-blue-400 transition-colors">Our Portfolio</a></li>
               <li><a href="https://aisoftwarestudio.co/services" className="hover:text-blue-400 transition-colors">Services</a></li>
+              <li><a href="https://aisoftwarestudio.co/reviews" className="hover:text-amber-400 transition-colors flex items-center gap-1.5"><span>Tech Reviews</span><span className="text-[10px] px-1.5 py-0.2 bg-amber-500/20 text-amber-300 rounded font-semibold">Gear</span></a></li>
               <li><a href="https://aisoftwarestudio.co/about" className="hover:text-blue-400 transition-colors">About Us</a></li>
             </ul>
           </div>
@@ -56,7 +57,9 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="w-full mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-slate-500">
           <p>© {new Date().getFullYear()} AI Software Studio. All rights reserved.</p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap items-center gap-6">
+            <a href="https://aisoftwarestudio.co/reviews" className="hover:text-amber-400 transition-colors">Tech Reviews</a>
+            <a href="https://aisoftwarestudio.co/affiliate-disclosure" className="hover:text-white transition-colors">Affiliate Disclosure</a>
             <a href="https://aisoftwarestudio.co/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="https://aisoftwarestudio.co/terms-of-service" className="hover:text-white transition-colors">Terms of Service</a>
           </div>
