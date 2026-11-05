@@ -43,13 +43,7 @@ export function Footer() {
               <li>
                 <Link href="/reviews" className="hover:text-amber-400 transition-colors flex items-center gap-1.5 text-slate-300">
                   <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Tech Reviews & Tests</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/affiliate" className="hover:text-orange-400 transition-colors flex items-center gap-1.5 text-slate-300">
-                  <ShoppingBag className="w-3.5 h-3.5 text-orange-400" />
-                  <span>Amazon Partner Store</span>
+                  <span>Tech Hardware Reviews</span>
                 </Link>
               </li>
               <li>

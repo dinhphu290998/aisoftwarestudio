@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
-import { Menu, X, ArrowRight, Sparkles, ShoppingBag } from "lucide-react";
+import { Menu, X, ArrowRight, Sparkles } from "lucide-react";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -43,14 +43,14 @@ export function Header() {
         <nav className="hidden lg:flex items-center gap-1 p-1 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-md">
           <Link 
             href="/#portfolio" 
-            className="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+            className="px-5 py-2 rounded-full text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
           >
             Portfolio
           </Link>
 
           <Link 
             href="/services" 
-            className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-colors ${
+            className={`px-5 py-2 rounded-full text-xs font-semibold transition-colors ${
               pathname === "/services" ? "bg-white/15 text-white" : "text-slate-300 hover:text-white hover:bg-white/10"
             }`}
           >
@@ -59,27 +59,17 @@ export function Header() {
 
           <Link 
             href="/reviews" 
-            className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5 ${
-              pathname === "/reviews" ? "bg-amber-500/20 text-amber-300" : "text-slate-300 hover:text-white hover:bg-white/10"
+            className={`px-5 py-2 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5 ${
+              pathname === "/reviews" || pathname === "/affiliate" ? "bg-amber-500/20 text-amber-300" : "text-slate-300 hover:text-white hover:bg-white/10"
             }`}
           >
-            <Sparkles className="w-3 h-3 text-amber-400" />
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
             <span>Tech Reviews</span>
           </Link>
 
           <Link 
-            href="/affiliate" 
-            className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5 ${
-              pathname === "/affiliate" ? "bg-amber-500/20 text-amber-300" : "text-slate-300 hover:text-white hover:bg-white/10"
-            }`}
-          >
-            <ShoppingBag className="w-3 h-3 text-orange-400" />
-            <span>Amazon Store</span>
-          </Link>
-
-          <Link 
             href="/about" 
-            className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-colors ${
+            className={`px-5 py-2 rounded-full text-xs font-semibold transition-colors ${
               pathname === "/about" ? "bg-white/15 text-white" : "text-slate-300 hover:text-white hover:bg-white/10"
             }`}
           >
@@ -91,7 +81,7 @@ export function Header() {
         <div className="hidden lg:flex items-center gap-3">
           <Link
             href="/#contact"
-            className="px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white text-xs font-bold transition-all duration-300 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-[1.02] active:scale-[0.98] flex items-center gap-1.5"
+            className="px-6 py-2.5 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white text-xs font-bold transition-all duration-300 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-[1.02] active:scale-[0.98] flex items-center gap-1.5"
           >
             <span>Start a Project</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -126,15 +116,7 @@ export function Header() {
               className="px-4 py-3 rounded-xl bg-amber-500/10 text-amber-300 text-sm font-semibold flex items-center gap-2 hover:bg-amber-500/20 transition-colors"
             >
               <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>Hardware Reviews & Comparisons</span>
-            </Link>
-            <Link 
-              href="/affiliate" 
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-4 py-3 rounded-xl bg-orange-500/10 text-orange-300 text-sm font-semibold flex items-center gap-2 hover:bg-orange-500/20 transition-colors"
-            >
-              <ShoppingBag className="w-4 h-4 text-orange-400" />
-              <span>Amazon Affiliate Store</span>
+              <span>Tech Hardware Reviews</span>
             </Link>
             <Link 
               href="/services" 
