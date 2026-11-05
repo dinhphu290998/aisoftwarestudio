@@ -813,6 +813,7 @@ export function Storefront() {
                       alt={product.name}
                       className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
                       loading="lazy"
+                      decoding="async"
                     />
                   </div>
 

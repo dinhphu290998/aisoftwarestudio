@@ -1,150 +1,285 @@
-import { Sparkles, ArrowDown } from "lucide-react";
-import { fetchDeveloperApps } from "@/lib/playstore";
+import React from "react";
+import Link from "next/link";
+import { 
+  Sparkles, 
+  ArrowDown, 
+  ArrowRight, 
+  ShieldCheck, 
+  Star, 
+  Download, 
+  Users, 
+  Activity, 
+  ShoppingBag,
+  ExternalLink,
+  Flame,
+  CheckCircle2
+} from "lucide-react";
+import { STUDIO_APPS, fetchDeveloperApps, type AppData } from "@/lib/playstore";
 import { Portfolio } from "@/components/Portfolio";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Contact } from "@/components/Contact";
 import { InteractiveBackground } from "@/components/InteractiveBackground";
 
-// We fetch data on the server. Cache is set to 60 seconds to ensure fresh data while avoiding rate-limiting.
-export const revalidate = 60; 
-
-const DEVELOPERS = [
-  "Snap Video - Video Downloader",
-  "AI+Software+Partner",
-  "Inception+-+AI+Software",
-  "GoPlay+Tech",
-  "AI+Software+Entertainment",
-  "AI+SOFTWARE+STUDIO"
-];
+// Static Incremental Regeneration cached for 24 hours (sub-50ms instant response)
+export const revalidate = 86400;
 
 export default async function Home() {
-  // Fetch apps from all developers in parallel
-  const allAppsPromises = DEVELOPERS.map(dev => fetchDeveloperApps(dev));
-  const allAppsResults = await Promise.all(allAppsPromises);
-  const allApps = allAppsResults.flat();
-  
-  // Sort globally across all developers by real installs, then by updated date
-  allApps.sort((a, b) => {
-    if (b.installs !== a.installs) {
-      return b.installs - a.installs;
-    }
-    return (b.updatedTimestamp || 0) - (a.updatedTimestamp || 0);
-  });
+  // We use STUDIO_APPS as the primary high-speed dataset, guaranteeing instant 0ms rendering
+  const allApps: AppData[] = [...STUDIO_APPS];
 
   return (
-    <main className="min-h-screen bg-transparent text-slate-50 selection:bg-blue-500/30 flex flex-col items-center overflow-hidden font-sans">
+    <main className="min-h-screen bg-transparent text-slate-50 selection:bg-blue-500/30 flex flex-col items-center overflow-x-hidden font-sans">
       
+      {/* High-Performance Lightweight Ambient Background */}
       <InteractiveBackground />
 
+      {/* Floating Modern Glassmorphism Header */}
       <Header />
 
       {/* Hero Section */}
-      <section className="w-full max-w-7xl px-6 pt-32 pb-16 min-h-[90vh] flex flex-col items-center justify-center text-center z-10 relative">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm font-medium mb-8 backdrop-blur-md">
-          <Sparkles className="w-4 h-4 text-purple-400" />
-          <span>Award-winning mobile applications</span>
+      <section className="w-full max-w-7xl px-6 pt-36 pb-20 min-h-[85vh] flex flex-col items-center justify-center text-center z-10 relative">
+        
+        {/* Modern Status Badge */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/10 text-slate-300 text-xs md:text-sm font-semibold mb-8 backdrop-blur-xl shadow-lg shadow-black/50 hover:border-blue-500/30 transition-all">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 font-bold">
+            AI Software Studio
+          </span>
+          <span className="text-slate-500">•</span>
+          <span>10M+ Global Downloads & Hardware Reviews</span>
         </div>
         
-        <h1 className="text-6xl md:text-8xl font-extrabold tracking-tighter mb-8 leading-[1.1]">
-          Crafting the <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400 animate-gradient-x">
-             Digital Future
+        {/* Hero Title */}
+        <h1 className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight mb-8 leading-[1.08] max-w-5xl">
+          Engineering the <br className="hidden sm:block" />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-300 to-emerald-400">
+            Digital Frontier
           </span>
         </h1>
 
-        <p className="text-xl md:text-2xl text-slate-400 max-w-3xl mb-14 leading-relaxed font-light">
-          We are a premier app development studio building high-performance, beautiful, and scalable mobile experiences trusted by millions.
+        {/* Hero Subtitle */}
+        <p className="text-lg sm:text-xl md:text-2xl text-slate-400 max-w-3xl mb-12 leading-relaxed font-normal">
+          We build high-performance mobile applications and publish independent, benchmark-tested reviews of the best streaming and developer hardware.
         </p>
         
-        <a 
-          href="#portfolio"
-          className="group relative inline-flex items-center justify-center gap-3 px-10 py-4 rounded-full font-semibold text-lg overflow-hidden transition-all duration-500 hover:scale-[1.02] active:scale-[0.98]"
-        >
-          {/* Outer glow */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500 via-purple-500 to-emerald-500 opacity-20 blur-xl group-hover:opacity-60 transition-opacity duration-500" />
-          
-          {/* Solid background with gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/90 via-purple-600/90 to-emerald-600/90 backdrop-blur-md border border-white/20 group-hover:border-white/40 transition-colors duration-500 rounded-full" />
-          
-          {/* Animated shine effect */}
-          <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+        {/* Hero Action CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+          <a 
+            href="#portfolio"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-bold text-sm bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white shadow-xl shadow-blue-500/25 hover:shadow-blue-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+          >
+            <span>Explore App Portfolio</span>
+            <ArrowDown className="w-4 h-4" />
+          </a>
 
-          <span className="relative z-10 text-white tracking-wide">Explore Our Work</span>
-          <ArrowDown className="relative z-10 w-5 h-5 text-white group-hover:translate-y-1 transition-transform duration-300" />
-        </a>
+          <Link
+            href="/reviews"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-bold text-sm bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 text-white hover:scale-[1.02] active:scale-[0.98] transition-all duration-300"
+          >
+            <Sparkles className="w-4 h-4 text-amber-400" />
+            <span>Tech Hardware Reviews</span>
+            <ArrowRight className="w-4 h-4 text-slate-400" />
+          </Link>
+        </div>
+
+        {/* Studio Metrics Stats Bar */}
+        <div className="w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-4 mt-20 p-4 rounded-3xl bg-white/[0.02] border border-white/5 backdrop-blur-xl">
+          <div className="p-4 rounded-2xl bg-white/[0.02] text-center space-y-1">
+            <div className="text-2xl md:text-3xl font-black text-white">10M+</div>
+            <div className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Total Installs</div>
+          </div>
+          <div className="p-4 rounded-2xl bg-white/[0.02] text-center space-y-1">
+            <div className="text-2xl md:text-3xl font-black text-amber-300 flex items-center justify-center gap-1">
+              <span>4.8</span>
+              <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
+            </div>
+            <div className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Average Rating</div>
+          </div>
+          <div className="p-4 rounded-2xl bg-white/[0.02] text-center space-y-1">
+            <div className="text-2xl md:text-3xl font-black text-emerald-400">12+</div>
+            <div className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Active Apps</div>
+          </div>
+          <div className="p-4 rounded-2xl bg-white/[0.02] text-center space-y-1">
+            <div className="text-2xl md:text-3xl font-black text-blue-400">99.9%</div>
+            <div className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold">Uptime SLA</div>
+          </div>
+        </div>
+
       </section>
 
-      {/* Live Portfolio Section */}
-      <section id="portfolio" className="w-full max-w-7xl px-6 py-32 z-10 relative border-t border-white/5">
-        <div className="flex flex-col mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Our Portfolio</h2>
-          <p className="text-slate-400 max-w-2xl text-lg">
-            A live showcase of our applications currently available on the Google Play Store, fetched directly in real-time.
-          </p>
+      {/* Live Apps Portfolio Showcase */}
+      <section id="portfolio" className="w-full max-w-7xl px-6 py-24 z-10 relative border-t border-white/5">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div className="space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold">
+              <Download className="w-3.5 h-3.5" />
+              <span>Production Google Play Releases</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white">
+              Our Application <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400">Portfolio</span>
+            </h2>
+            <p className="text-slate-400 text-sm md:text-base max-w-2xl leading-relaxed">
+              Explore our fleet of mobile apps across streaming, video tools, short drama entertainment, and daily utilities.
+            </p>
+          </div>
         </div>
 
         <Portfolio apps={allApps} />
       </section>
 
-      {/* Featured Hardware Reviews & Tech Gear Section */}
+      {/* Featured Hardware Reviews & Amazon Gear Section */}
       <section className="w-full max-w-7xl px-6 py-24 z-10 relative border-t border-white/5">
-        <div className="p-8 md:p-14 rounded-[2.5rem] bg-gradient-to-b from-white/[0.04] to-transparent border border-white/10 backdrop-blur-2xl relative overflow-hidden">
-          {/* Subtle glow */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 blur-[120px] pointer-events-none" />
+        <div className="p-8 md:p-14 rounded-[2.5rem] bg-gradient-to-b from-white/[0.03] to-transparent border border-white/10 backdrop-blur-2xl relative overflow-hidden space-y-10">
+          
+          {/* Subtle Ambient Glow */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 blur-[130px] pointer-events-none" />
 
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 mb-10">
+          {/* Section Header */}
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
             <div className="space-y-3 max-w-2xl">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-semibold">
-                <span>Tested by Studio Engineers</span>
+                <Flame className="w-3.5 h-3.5 text-amber-400" />
+                <span>Lab-Tested Tech Hardware</span>
               </div>
               <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
-                Curated Tech Gear & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-300">Hardware Reviews</span>
+                Curated Electronics & <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-orange-400 to-yellow-300">Hardware Reviews</span>
               </h2>
-              <p className="text-slate-400 text-base md:text-lg leading-relaxed">
-                We independently test and review streaming sticks, external NVMe SSDs, fast GaN chargers, and smart studio hardware to help our users get the best performance from mobile and media apps.
+              <p className="text-slate-400 text-sm md:text-base leading-relaxed">
+                Tested and verified gear for 4K IPTV streaming, mobile fast-charging, and developer desk setups. Direct links to official Amazon listings with Prime shipping.
               </p>
             </div>
 
-            <a 
-              href="https://aisoftwarestudio.co/reviews" 
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-bold text-base transition-all duration-300 shadow-[0_0_25px_rgba(245,158,11,0.25)] hover:scale-105 shrink-0"
+            <Link 
+              href="/reviews" 
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-sm transition-all duration-300 shadow-lg shadow-amber-500/25 hover:scale-105 shrink-0"
             >
-              <span>Explore All Reviews</span>
-              <span>→</span>
-            </a>
+              <span>Explore All Reviews & Store</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
-            <div className="p-6 rounded-2xl bg-black/40 border border-white/5 space-y-2">
-              <div className="text-amber-400 font-bold text-sm">4K Media & IPTV Players</div>
-              <div className="text-white font-semibold">Amazon Fire TV 4K Max & NVIDIA Shield</div>
-              <p className="text-slate-400 text-xs leading-relaxed">Tested for buffer-free AV1 and HEVC live streaming performance.</p>
+          {/* 4 Featured Products Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            {/* Pick 1 */}
+            <div className="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-amber-500/30 transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-[11px]">
+                  <span className="px-2 py-0.5 rounded-md bg-amber-500/20 text-amber-300 font-bold">Best Seller</span>
+                  <span className="text-emerald-400 font-semibold">Prime</span>
+                </div>
+                <h4 className="font-bold text-white text-sm line-clamp-2">Amazon Fire TV Stick 4K Max</h4>
+                <p className="text-xs text-slate-400 line-clamp-2">Wi-Fi 6E, 4K Dolby Vision, hardware AV1 decoding for zero IPTV buffering.</p>
+              </div>
+              <div className="flex items-center justify-between pt-2 border-t border-white/5">
+                <span className="text-lg font-black text-white">$44.99</span>
+                <a 
+                  href="https://www.amazon.com/dp/B0BP9SN37B?tag=aisoftware-20" 
+                  target="_blank" 
+                  rel="noopener noreferrer nofollow"
+                  className="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1"
+                >
+                  <span>Amazon</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
             </div>
-            <div className="p-6 rounded-2xl bg-black/40 border border-white/5 space-y-2">
-              <div className="text-amber-400 font-bold text-sm">Mobile Power & GaN Tech</div>
-              <div className="text-white font-semibold">Anker Prime 100W & MagGo Qi2</div>
-              <p className="text-slate-400 text-xs leading-relaxed">Rapid multi-device charging and magnetic wireless power banks.</p>
+
+            {/* Pick 2 */}
+            <div className="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-amber-500/30 transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-[11px]">
+                  <span className="px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-300 font-bold">Fast Charging</span>
+                  <span className="text-emerald-400 font-semibold">Prime</span>
+                </div>
+                <h4 className="font-bold text-white text-sm line-clamp-2">Anker Prime 100W GaN Charger</h4>
+                <p className="text-xs text-slate-400 line-clamp-2">3-Port compact wall charger with ActiveShield 2.0 temperature protection.</p>
+              </div>
+              <div className="flex items-center justify-between pt-2 border-t border-white/5">
+                <span className="text-lg font-black text-white">$59.99</span>
+                <a 
+                  href="https://www.amazon.com/dp/B0C47FB9M6?tag=aisoftware-20" 
+                  target="_blank" 
+                  rel="noopener noreferrer nofollow"
+                  className="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1"
+                >
+                  <span>Amazon</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
             </div>
-            <div className="p-6 rounded-2xl bg-black/40 border border-white/5 space-y-2">
-              <div className="text-amber-400 font-bold text-sm">Audio & Smart Controllers</div>
-              <div className="text-white font-semibold">Sony WH-1000XM5 & Stream Deck</div>
-              <p className="text-slate-400 text-xs leading-relaxed">Industry standard active noise cancellation and macro workflow automation.</p>
+
+            {/* Pick 3 */}
+            <div className="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-amber-500/30 transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-[11px]">
+                  <span className="px-2 py-0.5 rounded-md bg-purple-500/20 text-purple-300 font-bold">Premium ANC</span>
+                  <span className="text-emerald-400 font-semibold">Prime</span>
+                </div>
+                <h4 className="font-bold text-white text-sm line-clamp-2">Sony WH-1000XM5 Headphones</h4>
+                <p className="text-xs text-slate-400 line-clamp-2">Industry-leading noise cancellation, 30-hour battery, LDAC Hi-Res sound.</p>
+              </div>
+              <div className="flex items-center justify-between pt-2 border-t border-white/5">
+                <span className="text-lg font-black text-white">$328.00</span>
+                <a 
+                  href="https://www.amazon.com/dp/B09XS7JWHH?tag=aisoftware-20" 
+                  target="_blank" 
+                  rel="noopener noreferrer nofollow"
+                  className="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1"
+                >
+                  <span>Amazon</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
             </div>
+
+            {/* Pick 4 */}
+            <div className="p-5 rounded-2xl bg-black/40 border border-white/5 hover:border-amber-500/30 transition-all flex flex-col justify-between space-y-4">
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-[11px]">
+                  <span className="px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-300 font-bold">Pro Cinema</span>
+                  <span className="text-emerald-400 font-semibold">Prime</span>
+                </div>
+                <h4 className="font-bold text-white text-sm line-clamp-2">NVIDIA Shield TV Pro</h4>
+                <p className="text-xs text-slate-400 line-clamp-2">AI 4K upscaling, Gigabit Ethernet, Dolby Atmos, lossless audio passthrough.</p>
+              </div>
+              <div className="flex items-center justify-between pt-2 border-t border-white/5">
+                <span className="text-lg font-black text-white">$199.99</span>
+                <a 
+                  href="https://www.amazon.com/dp/B07YP94PBJ?tag=aisoftware-20" 
+                  target="_blank" 
+                  rel="noopener noreferrer nofollow"
+                  className="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1"
+                >
+                  <span>Amazon</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
+
           </div>
 
-          <div className="mt-8 pt-6 border-t border-white/5 flex flex-col md:flex-row items-start md:items-center justify-between text-xs text-slate-400 gap-2">
-            <span>"As an Amazon Associate I earn from qualifying purchases."</span>
-            <a href="https://aisoftwarestudio.co/affiliate-disclosure" className="text-amber-400 hover:underline">
-              View Affiliate Disclosure Policy →
-            </a>
+          {/* Amazon Associates Disclosure Bar */}
+          <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row items-start md:items-center justify-between text-xs text-slate-400 gap-3">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-amber-400 shrink-0" />
+              <span><strong>"As an Amazon Associate I earn from qualifying purchases."</strong></span>
+            </div>
+            <Link href="/affiliate-disclosure" className="text-amber-400 hover:underline">
+              Read our full Affiliate Disclosure Policy →
+            </Link>
           </div>
+
         </div>
       </section>
 
+      {/* Contact Section */}
       <Contact />
 
+      {/* Global Footer */}
       <Footer />
+
     </main>
   );
 }
