@@ -14,19 +14,18 @@ import {
   Flame,
   CheckCircle2
 } from "lucide-react";
-import { STUDIO_APPS, fetchDeveloperApps, type AppData } from "@/lib/playstore";
+import { getAllStudioApps, type AppData } from "@/lib/playstore";
 import { Portfolio } from "@/components/Portfolio";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Contact } from "@/components/Contact";
 import { InteractiveBackground } from "@/components/InteractiveBackground";
 
-// Static Incremental Regeneration cached for 24 hours (sub-50ms instant response)
-export const revalidate = 86400;
+// Cache for 60 seconds to ensure fresh data
+export const revalidate = 60;
 
 export default async function Home() {
-  // We use STUDIO_APPS as the primary high-speed dataset, guaranteeing instant 0ms rendering
-  const allApps: AppData[] = [...STUDIO_APPS];
+  const allApps: AppData[] = await getAllStudioApps();
 
   return (
     <main className="min-h-screen bg-transparent text-slate-50 selection:bg-blue-500/30 flex flex-col items-center overflow-x-hidden font-sans">
