@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
-import { AFFICA_ADS } from '@/app/partner/[subdomain]/app-ads.txt/route';
+
+const APP_ADS_CONTENT = `google.com, pub-9313115044909284, DIRECT, f08c47fec0942fa0`;
 
 export async function GET() {
-  return new NextResponse(AFFICA_ADS, {
+  return new NextResponse(APP_ADS_CONTENT, {
     status: 200,
     headers: {
       'Content-Type': 'text/plain',
