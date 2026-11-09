@@ -16,6 +16,14 @@ import {
   Layers 
 } from "lucide-react";
 
+export const metadata = {
+  title: "Mobile App Development & AI Engineering Services | AI Software Studio",
+  description: "End-to-end iOS & Android development, generative AI orchestration, and ultra-fast Next.js / cloud backend architecture built for millions of users.",
+  alternates: {
+    canonical: "https://aisoftwarestudio.co/services",
+  },
+};
+
 const services = [
   {
     title: "Mobile App Development",

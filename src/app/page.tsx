@@ -24,6 +24,14 @@ import { InteractiveBackground } from "@/components/InteractiveBackground";
 // Cache for 60 seconds to ensure fresh data
 export const revalidate = 60;
 
+export const metadata = {
+  title: "AI Software Studio | Premium Mobile Apps & Tech Reviews",
+  description: "Pioneering high-performance mobile applications with 10M+ global users and benchmark-tested consumer tech hardware reviews.",
+  alternates: {
+    canonical: "https://aisoftwarestudio.co",
+  },
+};
+
 export default async function Home() {
   const allApps: AppData[] = await getAllStudioApps();
 

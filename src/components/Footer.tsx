@@ -47,6 +47,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/guides" className="hover:text-blue-400 transition-colors text-slate-300">
+                  <span>Buying Guides & Sales Articles</span>
+                </Link>
+              </li>
+              <li>
                 <Link href="/services" className="hover:text-blue-400 transition-colors">
                   Engineering Services
                 </Link>

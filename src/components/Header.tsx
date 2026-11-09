@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
-import { Menu, X, ArrowRight, Sparkles } from "lucide-react";
+import { Menu, X, ArrowRight, Sparkles, BookOpen } from "lucide-react";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -68,6 +68,16 @@ export function Header() {
           </Link>
 
           <Link 
+            href="/guides" 
+            className={`px-5 py-2 rounded-full text-xs font-semibold transition-colors flex items-center gap-1.5 ${
+              pathname === "/guides" ? "bg-blue-600/20 text-blue-300 font-bold" : "text-slate-300 hover:text-white hover:bg-white/10"
+            }`}
+          >
+            <BookOpen className="w-3.5 h-3.5 text-blue-400" />
+            <span>Buying Guides</span>
+          </Link>
+
+          <Link 
             href="/about" 
             className={`px-5 py-2 rounded-full text-xs font-semibold transition-colors ${
               pathname === "/about" ? "bg-white/15 text-white" : "text-slate-300 hover:text-white hover:bg-white/10"
@@ -117,6 +127,14 @@ export function Header() {
             >
               <Sparkles className="w-4 h-4 text-amber-400" />
               <span>Tech Hardware Reviews</span>
+            </Link>
+            <Link 
+              href="/guides" 
+              onClick={() => setMobileMenuOpen(false)}
+              className="px-4 py-3 rounded-xl bg-blue-500/10 text-blue-300 text-sm font-semibold flex items-center gap-2 hover:bg-blue-500/20 transition-colors"
+            >
+              <BookOpen className="w-4 h-4 text-blue-400" />
+              <span>Buying Guides & Sales Articles</span>
             </Link>
             <Link 
               href="/services" 

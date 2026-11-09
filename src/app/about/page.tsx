@@ -5,6 +5,14 @@ import { Footer } from "@/components/Footer";
 import { InteractiveBackground } from "@/components/InteractiveBackground";
 import { Users, Globe2, Target, Award, ArrowRight, Sparkles, CheckCircle2 } from "lucide-react";
 
+export const metadata = {
+  title: "About Our Studio & Hardware Testing Lab | AI Software Studio",
+  description: "Learn about AI Software Studio: building high-performance mobile apps for 10M+ users and providing independent, benchmark-tested consumer tech hardware reviews.",
+  alternates: {
+    canonical: "https://aisoftwarestudio.co/about",
+  },
+};
+
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-transparent text-slate-50 flex flex-col font-sans overflow-x-hidden">

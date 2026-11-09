@@ -483,14 +483,24 @@ export function Storefront() {
                       <ExternalLink className="w-3 h-3 text-slate-950" />
                     </a>
 
-                    <button
-                      type="button"
-                      onClick={() => setActiveModalProduct(product)}
-                      className="w-full py-2 px-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white text-xs font-medium transition-colors flex items-center justify-center gap-1.5"
-                    >
-                      <Info className="w-3.5 h-3.5 text-slate-400" />
-                      <span>Specs & Review Notes</span>
-                    </button>
+                    <div className="grid grid-cols-2 gap-2">
+                      <Link
+                        href={`/reviews/${product.id}`}
+                        className="w-full py-2 px-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1"
+                      >
+                        <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                        <span>Bài Viết Review</span>
+                      </Link>
+
+                      <button
+                        type="button"
+                        onClick={() => setActiveModalProduct(product)}
+                        className="w-full py-2 px-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white text-xs font-medium transition-colors flex items-center justify-center gap-1"
+                      >
+                        <Info className="w-3.5 h-3.5 text-slate-400" />
+                        <span>Thông Số</span>
+                      </button>
+                    </div>
                   </div>
 
                 </div>
@@ -634,15 +644,24 @@ export function Storefront() {
               <div className="text-xs text-slate-400">
                 Official Amazon Listing (ASIN: <span className="font-mono text-slate-200">{activeModalProduct.asin}</span>)
               </div>
-              <a
-                href={activeModalProduct.amazonUrl}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="w-full sm:w-auto px-8 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-black text-sm flex items-center justify-center gap-2 hover:scale-105 transition-all shadow-lg shadow-amber-500/25"
-              >
-                <span>View on Amazon.com</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
+              <div className="flex items-center gap-3 w-full sm:w-auto">
+                <Link
+                  href={`/reviews/${activeModalProduct.id}`}
+                  className="w-full sm:w-auto px-5 py-3 rounded-full bg-white/10 hover:bg-white/15 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Đọc Toàn Bộ Bài Viết & So Sánh →</span>
+                </Link>
+                <a
+                  href={activeModalProduct.amazonUrl}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="w-full sm:w-auto px-7 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-black text-sm flex items-center justify-center gap-2 hover:scale-105 transition-all shadow-lg shadow-amber-500/25"
+                >
+                  <span>Mua Trên Amazon</span>
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
             </div>
 
           </div>
