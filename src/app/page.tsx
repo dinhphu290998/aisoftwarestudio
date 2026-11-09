@@ -183,7 +183,7 @@ export default async function Home() {
               <div className="flex items-center justify-between pt-2 border-t border-white/5">
                 <span className="text-lg font-black text-white">$44.99</span>
                 <a 
-                  href="https://www.amazon.com/dp/B0BP9SN37B?tag=aisoftware-20" 
+                  href="https://www.amazon.com/dp/B0BP9SN37B?tag=aisoftwarestu-20" 
                   target="_blank" 
                   rel="noopener noreferrer nofollow"
                   className="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1"
@@ -216,7 +216,7 @@ export default async function Home() {
               <div className="flex items-center justify-between pt-2 border-t border-white/5">
                 <span className="text-lg font-black text-white">$59.99</span>
                 <a 
-                  href="https://www.amazon.com/dp/B0C47FB9M6?tag=aisoftware-20" 
+                  href="https://www.amazon.com/dp/B0C47FB9M6?tag=aisoftwarestu-20" 
                   target="_blank" 
                   rel="noopener noreferrer nofollow"
                   className="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1"
@@ -249,7 +249,7 @@ export default async function Home() {
               <div className="flex items-center justify-between pt-2 border-t border-white/5">
                 <span className="text-lg font-black text-white">$328.00</span>
                 <a 
-                  href="https://www.amazon.com/dp/B09XS7JWHH?tag=aisoftware-20" 
+                  href="https://www.amazon.com/dp/B09XS7JWHH?tag=aisoftwarestu-20" 
                   target="_blank" 
                   rel="noopener noreferrer nofollow"
                   className="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1"
@@ -282,7 +282,7 @@ export default async function Home() {
               <div className="flex items-center justify-between pt-2 border-t border-white/5">
                 <span className="text-lg font-black text-white">$199.99</span>
                 <a 
-                  href="https://www.amazon.com/dp/B07YP94PBJ?tag=aisoftware-20" 
+                  href="https://www.amazon.com/dp/B07YP94PBJ?tag=aisoftwarestu-20" 
                   target="_blank" 
                   rel="noopener noreferrer nofollow"
                   className="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1"

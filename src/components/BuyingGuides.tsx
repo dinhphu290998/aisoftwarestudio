@@ -143,7 +143,7 @@ export function BuyingGuides() {
               <strong>Why it wins:</strong> At its $44.99 sale price, the Fire TV Stick 4K Max is virtually impossible to beat on price-to-performance. With full Wi-Fi 6E support, a 2.0 GHz quad-core CPU, 16GB storage, and native AV1 support, it handles 4K IPTV streams with silky smoothness. Sideloading your favorite APKs takes under 3 minutes via the Downloader app.
             </p>
             <a
-              href="https://www.amazon.com/dp/B0BP9SN37B?tag=aisoftware-20"
+              href="https://www.amazon.com/dp/B0BP9SN37B?tag=aisoftwarestu-20"
               target="_blank"
               rel="noopener noreferrer nofollow"
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition-transform hover:scale-105"
@@ -167,7 +167,7 @@ export function BuyingGuides() {
               <strong>Why it wins:</strong> The definitive home theater box. The Tegra X1+ chip provides real-time AI upscaling that sharpens lower-quality 720p or 1080p IPTV channel streams into near-native 4K on big screens. Built-in Gigabit Ethernet and twin USB 3.0 ports make it a dream setup for running local Plex servers or external recording hard drives.
             </p>
             <a
-              href="https://www.amazon.com/dp/B07YP94PBJ?tag=aisoftware-20"
+              href="https://www.amazon.com/dp/B07YP94PBJ?tag=aisoftwarestu-20"
               target="_blank"
               rel="noopener noreferrer nofollow"
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-transform hover:scale-105"
@@ -191,7 +191,7 @@ export function BuyingGuides() {
               <strong>Why it wins:</strong> Powered by the A15 Bionic chip, Apple TV 4K is by far the fastest and most ad-free user interface on the market. If you prioritize sleek design, zero promotional banners, seamless AirPlay 2 screen mirroring from your iPhone, and Gigabit Ethernet, this is the premium benchmark.
             </p>
             <a
-              href="https://www.amazon.com/dp/B0BJLBZ9D7?tag=aisoftware-20"
+              href="https://www.amazon.com/dp/B0BJLBZ9D7?tag=aisoftwarestu-20"
               target="_blank"
               rel="noopener noreferrer nofollow"
               className="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-transform hover:scale-105"
@@ -240,7 +240,7 @@ export function BuyingGuides() {
                 Ditch the heavy brick chargers. A single Anker Prime 100W wall plug replaces your laptop charger, phone plug, and tablet adapter in a package 43% smaller than Apple&apos;s standard 96W brick.
               </p>
               <a 
-                href="https://www.amazon.com/dp/B0C479M4R4?tag=aisoftware-20"
+                href="https://www.amazon.com/dp/B0C479M4R4?tag=aisoftwarestu-20"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
                 className="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1"
@@ -260,7 +260,7 @@ export function BuyingGuides() {
                 Cloud sync has latency limits. For heavy video editing, document scanning backups, or large code repositories, this pocket-sized NVMe drive delivers 1050MB/s speeds with IP65 weatherproofing.
               </p>
               <a 
-                href="https://www.amazon.com/dp/B08GTYFC37?tag=aisoftware-20"
+                href="https://www.amazon.com/dp/B08GTYFC37?tag=aisoftwarestu-20"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
                 className="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1"
@@ -280,7 +280,7 @@ export function BuyingGuides() {
                 Engineered for developers and power users. MagSpeed electromagnetic scrolling flies through 1,000 lines of code per second, while Quiet Clicks prevent office or coffee shop noise complaints.
               </p>
               <a 
-                href="https://www.amazon.com/dp/B09HM94VDS?tag=aisoftware-20"
+                href="https://www.amazon.com/dp/B09HM94VDS?tag=aisoftwarestu-20"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
                 className="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1"
@@ -300,7 +300,7 @@ export function BuyingGuides() {
                 Automate your most repetitive daily actions: launching local testing servers, muting microphone feeds, switching audio outputs, and executing complex terminal command chains with one tactile tap.
               </p>
               <a 
-                href="https://www.amazon.com/dp/B09738CV2G?tag=aisoftware-20"
+                href="https://www.amazon.com/dp/B09738CV2G?tag=aisoftwarestu-20"
                 target="_blank"
                 rel="noopener noreferrer nofollow"
                 className="text-xs font-bold text-amber-400 hover:underline flex items-center gap-1"

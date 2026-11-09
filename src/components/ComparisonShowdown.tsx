@@ -108,7 +108,7 @@ export function ComparisonShowdown() {
                 <td className="py-4 px-3 font-medium text-slate-400">Amazon Purchase Link</td>
                 <td className="py-4 px-3 text-center bg-amber-500/5">
                   <a
-                    href="https://www.amazon.com/dp/B0BP9SN37B?tag=aisoftware-20"
+                    href="https://www.amazon.com/dp/B0BP9SN37B?tag=aisoftwarestu-20"
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                     className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition-transform hover:scale-105"
@@ -119,7 +119,7 @@ export function ComparisonShowdown() {
                 </td>
                 <td className="py-4 px-3 text-center">
                   <a
-                    href="https://www.amazon.com/dp/B0BJLBZ9D7?tag=aisoftware-20"
+                    href="https://www.amazon.com/dp/B0BJLBZ9D7?tag=aisoftwarestu-20"
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                     className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-transform hover:scale-105"
@@ -130,7 +130,7 @@ export function ComparisonShowdown() {
                 </td>
                 <td className="py-4 px-3 text-center">
                   <a
-                    href="https://www.amazon.com/dp/B07YP94PBJ?tag=aisoftware-20"
+                    href="https://www.amazon.com/dp/B07YP94PBJ?tag=aisoftwarestu-20"
                     target="_blank"
                     rel="noopener noreferrer nofollow"
                     className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-transform hover:scale-105"
@@ -223,7 +223,7 @@ export function ComparisonShowdown() {
             </div>
 
             <a
-              href="https://www.amazon.com/dp/B09XS7JWHH?tag=aisoftware-20"
+              href="https://www.amazon.com/dp/B09XS7JWHH?tag=aisoftwarestu-20"
               target="_blank"
               rel="noopener noreferrer nofollow"
               className="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-xs flex items-center justify-center gap-2 transition-transform hover:scale-105"
@@ -270,7 +270,7 @@ export function ComparisonShowdown() {
             </div>
 
             <a
-              href="https://www.amazon.com/dp/B0CHWRXH8B?tag=aisoftware-20"
+              href="https://www.amazon.com/dp/B0CHWRXH8B?tag=aisoftwarestu-20"
               target="_blank"
               rel="noopener noreferrer nofollow"
               className="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-xs flex items-center justify-center gap-2 transition-transform hover:scale-105"
@@ -324,7 +324,7 @@ export function ComparisonShowdown() {
 
         <div className="pt-2 text-center">
           <a
-            href="https://www.amazon.com/dp/B0C479M4R4?tag=aisoftware-20"
+            href="https://www.amazon.com/dp/B0C479M4R4?tag=aisoftwarestu-20"
             target="_blank"
             rel="noopener noreferrer nofollow"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-sm shadow-xl shadow-amber-500/20 transition-transform hover:scale-105"
