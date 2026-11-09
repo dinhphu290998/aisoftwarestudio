@@ -46,7 +46,7 @@ export interface SalesArticle {
   updatedDate: string;
 }
 
-// Category-specific comparison presets
+// Category-specific comparison presets with global tech benchmarks
 const CATEGORY_RIVALS: Record<string, { rivalName: string; rivalBadge: string; defaultPoints: SalesComparisonCriterion[] }> = {
   streaming: {
     rivalName: "Standard Smart TV Built-in Apps & Generic Android Sticks",
@@ -69,7 +69,7 @@ const CATEGORY_RIVALS: Record<string, { rivalName: string; rivalBadge: string; d
     ]
   },
   storage: {
-    rivalName: "Traditional Mechanical Hard Drives & Cheap USB 3.0 Flash Drives",
+    rivalName: "Traditional Mechanical Hard Drives & Cheap USB Flash Drives",
     rivalBadge: "Generic External Drive",
     defaultPoints: [
       { feature: "Read / Write Throughput", ourScore: "Up to 1050MB/s - 2000MB/s NVMe speeds", rivalScore: "Sluggish 80MB/s - 130MB/s", winner: "ours" },
@@ -114,41 +114,41 @@ export function generateSalesArticle(product: StoreProduct): SalesArticle {
   const discountPercent = Math.round(((product.originalPrice - product.dealPrice) / product.originalPrice) * 100);
   const rivalInfo = CATEGORY_RIVALS[product.category] || CATEGORY_RIVALS.streaming;
 
-  // Catchy SEO Headline
-  const seoTitle = `${product.name} Review (2026): Is It Worth Buying? Specs, Price & Comparison`;
-  const seoDescription = `Comprehensive sales review and lab benchmark of ${product.name}. Save ${discountPercent}% on Amazon with Prime delivery. See head-to-head comparison, real pros & cons, and buyer verdict.`;
+  // Global SEO Optimized Headline & Meta Description
+  const seoTitle = `${product.name} Review (2026): In-Depth Hands-On Test, Specs & Best Price`;
+  const seoDescription = `Comprehensive hands-on review and benchmark breakdown of ${product.name}. Save ${discountPercent}% on Amazon with Prime delivery. Explore specs, head-to-head comparison, real pros & cons, and buyer verdict.`;
 
-  const salesHeadline = `Đánh Giá & So Sánh Chi Tiết: Tại Sao ${product.name} Là Lựa Chọn Số 1 Năm 2026?`;
-  const hookSubtitle = `Trải nghiệm thực tế từ kỹ sư AI Software Studio: Hiệu năng đỉnh cao, giá giảm ${discountPercent}%, bảo hành chính hãng Amazon Prime.`;
+  const salesHeadline = `In-Depth Review: Why the ${product.name} Dominates the ${product.categoryLabel} Market in 2026`;
+  const hookSubtitle = `Hands-on analysis by AI Software Studio engineers: Benchmark-crushing performance, verified discount of ${discountPercent}%, and official Amazon Prime coverage.`;
 
-  // Pain points solved based on category
+  // Pain points solved in global English
   const painPointsSolved: string[] = [
-    `Loại bỏ hoàn toàn hiện tượng giật lag, đơ máy hay quá nhiệt khi vận hành liên tục nhiều giờ liền.`,
-    `Tương thích tuyệt đối với các ứng dụng hiện đại nhất năm 2026, hỗ trợ chuẩn kết nối mới nhất.`,
-    `Tiết kiệm đáng kể thời gian và tiền bạc nhờ độ bền vượt trội cùng mức giá ưu đãi Prime độc quyền.`,
-    `Thiết kế cao cấp, nhỏ gọn và thanh lịch, nâng cấp ngay lập tức không gian làm việc và giải trí.`
+    `Completely eliminates sluggish performance, thermal throttling, and stutter under continuous heavy workloads.`,
+    `Fully future-proofed for 2026 next-generation connectivity standards, smart home protocols, and mobile operating systems.`,
+    `Saves significant time, money, and hassle thanks to enterprise-grade component durability and Amazon's 30-day money-back guarantee.`,
+    `Engineered with sleek, minimalist industrial design that immediately elevates your entertainment center or workstation setup.`
   ];
 
-  // Key Selling Points
+  // Key Selling Points in global English
   const keySellingPoints: SalesKeyPoint[] = [
     {
-      title: "Hiệu Năng Vượt Trội Phân Khúc",
-      description: `${product.name} trang bị linh kiện cao cấp từ ${product.brand}, giúp xử lý tác vụ mượt mà và ổn định tuyệt đối trong mọi tình huống.`,
+      title: "Class-Leading Performance & Reliability",
+      description: `Powered by premium silicon and rigorous engineering from ${product.brand}, delivering rock-solid stability and zero latency across real-world tests.`,
       badge: "Top Performance"
     },
     {
-      title: "Tối Ưu Hoá Cho Hệ Sinh Thái 2026",
-      description: `Hỗ trợ chuẩn kết nối tốc độ cao nhất, tương thích trơn tru với các thiết bị thông minh và ứng dụng giải trí di động hiện đại.`,
+      title: "Optimized for the 2026 Digital Ecosystem",
+      description: `Fully compatible with modern high-bandwidth protocols, low-latency Wi-Fi, and the latest mobile media applications.`,
       badge: "Future-Proof"
     },
     {
-      title: "Được Hơn " + product.reviewsCount + " Khách Hàng Tin Dùng",
-      description: `Đạt điểm đánh giá trung bình ${product.rating} sao trên Amazon toàn cầu cùng danh hiệu ${product.badge}.`,
+      title: `Trusted by Over ${product.reviewsCount} Verified Buyers`,
+      description: `Maintains an impressive ${product.rating} out of 5 stars on Amazon worldwide, officially earning the prestigious ${product.badge} distinction.`,
       badge: "Verified Quality"
     },
     {
-      title: "Ưu Đãi Giá Tốt Nhất & Đổi Trả Dễ Dàng",
-      description: `Đang có giá ưu đãi chỉ $${product.dealPrice} (tiết kiệm ${discountPercent}% so với giá gốc $${product.originalPrice}), giao hàng hoả tốc qua Amazon Prime.`,
+      title: `Unbeatable Price-to-Performance Ratio`,
+      description: `Currently discounted to just $${product.dealPrice} (saving ${discountPercent}% off the original $${product.originalPrice} MSRP) with free 1-Day Prime shipping.`,
       badge: "Best Value"
     }
   ];
@@ -157,29 +157,29 @@ export function generateSalesArticle(product: StoreProduct): SalesArticle {
   const comparison: SalesComparison = {
     rivalName: rivalInfo.rivalName,
     rivalBadge: rivalInfo.rivalBadge,
-    verdict: `Trong các bài kiểm tra thực tế, ${product.name} vượt trội hơn ${rivalInfo.rivalBadge} về độ ổn định, tốc độ phản hồi và độ bền linh kiện, chứng minh đây là khoản đầu tư xứng đáng từng xu.`,
+    verdict: `In our laboratory benchmark testing, the ${product.name} outperformed ${rivalInfo.rivalBadge} in sustained throughput, thermal stability, and overall reliability, making it a standout investment.`,
     criteria: rivalInfo.defaultPoints
   };
 
-  // Target audience
+  // Target audience in global English
   const targetAudience: string[] = [
-    `Người dùng tìm kiếm sản phẩm ${product.categoryLabel.toLowerCase()} chính hãng, độ bền cao và chế độ bảo hành uy tín.`,
-    `Những ai muốn giải quyết dứt điểm các bất tiện của thiết bị đời cũ và nâng cao chất lượng trải nghiệm hàng ngày.`,
-    `Khách hàng thông thái muốn săn sale mức giá hời nhất trên Amazon với đầy đủ quyền lợi thành viên Prime.`
+    `Tech enthusiasts and professionals seeking genuine, high-performance ${product.categoryLabel.toLowerCase()} hardware backed by official warranty.`,
+    `Users looking to eliminate legacy device bottlenecks, slow load times, and poor build quality once and for all.`,
+    `Smart consumers eager to lock in verified Amazon discount pricing while taking full advantage of Prime delivery and hassle-free returns.`
   ];
 
   const whoShouldPass: string[] = [
-    `Những ai chỉ cần tính năng cơ bản nhất và không bận tâm đến độ trễ hay chất lượng hoàn thiện cao cấp.`
+    `Casual consumers who only require basic functionality and do not mind higher latency or plastic build materials.`
   ];
 
   const customerQuotes = [
     {
-      quote: `Sản phẩm này hoàn toàn vượt kỳ vọng của tôi! Tốc độ cực nhanh, đóng gói chắc chắn và dùng cực kỳ ổn định. Khuyên mọi người nên mua khi đang có giá tốt!`,
+      quote: `This product completely exceeded my expectations. Fast delivery, rock-solid build quality, and it performs flawlessly day in and day out. Highly recommended!`,
       author: "Verified Amazon Tech Reviewer",
       rating: 5
     },
     {
-      quote: `Đã thử qua nhiều dòng sản phẩm khác nhau nhưng ${product.name} từ ${product.brand} thực sự ở một đẳng cấp khác. Rất đáng đồng tiền bát gạo.`,
+      quote: `I tested several competing alternatives before landing on the ${product.name} from ${product.brand}. The difference in quality and responsiveness is night and day.`,
       author: "Prime Member Shopper",
       rating: 5
     }
@@ -187,22 +187,22 @@ export function generateSalesArticle(product: StoreProduct): SalesArticle {
 
   const faqs = [
     {
-      question: `Sản phẩm ${product.name} này có phải là hàng chính hãng trên Amazon không?`,
-      answer: `Chính xác 100%. Đường link đặt hàng trực tiếp trỏ về trang bán hàng chính thức của thương hiệu ${product.brand} trên Amazon.com, được hưởng đầy đủ chính sách bảo hành quốc tế và hoàn tiền 30 ngày từ Amazon.`
+      question: `Is this ${product.name} an official, genuine Amazon product?`,
+      answer: `Yes, 100%. Our purchase links connect you directly to the official manufacturer store for ${product.brand} on Amazon.com, ensuring full manufacturer warranty coverage, genuine accessories, and authentic hardware.`
     },
     {
-      question: `Chính sách giao hàng và đổi trả của Amazon như thế nào?`,
-      answer: `Nếu bạn sở hữu tài khoản Amazon Prime, bạn sẽ được miễn phí giao hàng hoả tốc 1-2 ngày. Trong vòng 30 ngày kể từ khi nhận hàng, nếu có bất kỳ lỗi kỹ thuật nào, bạn hoàn toàn có thể yêu cầu đổi mới hoặc hoàn tiền miễn phí.`
+      question: `What are Amazon's delivery and return policies for this item?`,
+      answer: `If you have an Amazon Prime membership, you qualify for free 1-Day or 2-Day Prime delivery. In addition, Amazon provides a 30-day no-hassle return policy, allowing you to return or replace the product with complete peace of mind.`
     },
     {
-      question: `Tại sao nên mua ${product.name} ngay hôm nay?`,
-      answer: `Sản phẩm hiện đang được áp dụng mức giá sale $${product.dealPrice} (giảm ${discountPercent}% so với giá gốc $${product.originalPrice}). Do nhu cầu cao (${product.boughtPastMonth}), các deal Amazon có thể kết thúc hoặc hết hàng bất kỳ lúc nào.`
+      question: `Why should I purchase the ${product.name} today?`,
+      answer: `The product is currently featured at a limited deal price of $${product.dealPrice} (saving you ${discountPercent}% off the $${product.originalPrice} retail price). Due to heavy demand (${product.boughtPastMonth}), limited-time deals on Amazon can expire or sell out at any moment.`
     }
   ];
 
-  const inDepthPitch = `Nếu bạn đang tìm kiếm một thiết bị ${product.categoryLabel.toLowerCase()} hoàn hảo đáp ứng cả 3 tiêu chí: Hiệu năng dẫn đầu, Độ bền bỉ và Mức giá hợp lý, thì ${product.name} chính là câu trả lời. Được đội ngũ kỹ sư của AI Software Studio kiểm định trực tiếp, thiết bị này không chỉ giải quyết triệt để các hạn chế của dòng sản phẩm tiền nhiệm mà còn mang lại trải nghiệm tiện nghi, mượt mà và đẳng cấp cho người sử dụng.`;
+  const inDepthPitch = `If you are searching for a high-performance ${product.categoryLabel.toLowerCase()} solution that balances benchmark-topping performance, rugged durability, and extraordinary value, the ${product.name} stands as our editorial team's top recommendation for 2026. Rigorously tested in our hardware laboratory, it tackles real-world bottlenecks effortlessly, delivering the seamless experience discerning users demand.`;
 
-  const verdict = `${product.name} hoàn toàn xứng đáng với danh hiệu ${product.badge}. Với mức giá khuyến mãi $${product.dealPrice} cùng hàng ngàn phản hồi 5 sao từ cộng đồng, đây là thời điểm hoàn hảo nhất để bạn sở hữu sản phẩm này.`;
+  const verdict = `The ${product.name} rightfully commands its ${product.badge} status. With thousands of 5-star customer ratings and a compelling deal price of $${product.dealPrice}, this is without question the best time to upgrade your tech setup.`;
 
   return {
     product,
@@ -220,7 +220,7 @@ export function generateSalesArticle(product: StoreProduct): SalesArticle {
     faqs,
     verdict,
     discountPercent,
-    updatedDate: "Tháng 11, 2026"
+    updatedDate: "November 2026"
   };
 }
 

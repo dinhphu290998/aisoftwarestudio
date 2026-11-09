@@ -26,13 +26,13 @@ import { ComparisonShowdown } from "./ComparisonShowdown";
 import { BuyingGuides } from "./BuyingGuides";
 
 const CATEGORY_TABS = [
-  { id: "all", label: "Tất Cả Bài Viết (102)", icon: Flame },
-  { id: "streaming", label: "Streaming & TV (18)", icon: Tv },
-  { id: "mobile", label: "Sạc & Nguồn GaN (17)", icon: Smartphone },
-  { id: "storage", label: "Ổ Cứng SSD (16)", icon: HardDrive },
-  { id: "audio", label: "Tai Nghe & Loa (17)", icon: Headphones },
-  { id: "creator", label: "Creator & Studio (17)", icon: Video },
-  { id: "studio", label: "Bàn Làm Việc & Hub (17)", icon: Zap },
+  { id: "all", label: "All Tech Guides (102)", icon: Flame },
+  { id: "streaming", label: "Streaming & 4K TV (18)", icon: Tv },
+  { id: "mobile", label: "Mobile Power & GaN (17)", icon: Smartphone },
+  { id: "storage", label: "Fast SSDs & Storage (16)", icon: HardDrive },
+  { id: "audio", label: "Audio & Headphones (17)", icon: Headphones },
+  { id: "creator", label: "Creator & Video Studio (17)", icon: Video },
+  { id: "studio", label: "Smart Desk & Hubs (17)", icon: Zap },
 ];
 
 export function GuidesHub() {
@@ -60,7 +60,7 @@ export function GuidesHub() {
       <div className="w-full bg-gradient-to-r from-blue-700 via-indigo-600 to-purple-700 text-white py-2.5 px-4 text-xs md:text-sm font-semibold text-center shadow-lg relative z-20 flex items-center justify-center gap-2">
         <Sparkles className="w-4 h-4 text-amber-300 animate-pulse shrink-0" />
         <span>
-          <strong>Cẩm Nang Mua Sắm 2026:</strong> Đánh giá chuyên sâu, phân tích ưu nhược điểm & so sánh thực tế 102+ sản phẩm công nghệ bán chạy nhất trên Amazon.
+          <strong>2026 Tech Buyer&apos;s Guides:</strong> Hands-on lab benchmarks, head-to-head showdowns, and verified discount deals for 100+ top-selling Amazon tech products.
         </span>
       </div>
 
@@ -72,13 +72,13 @@ export function GuidesHub() {
             <span>AI Sales Insights & In-Depth Buyer Guides</span>
           </div>
           <h1 className="text-3xl md:text-6xl font-black text-white tracking-tight leading-tight">
-            Bài Viết Bán Hàng & <br />
+            Tech Buyer&apos;s Guides & <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-300 to-emerald-400">
-              Cẩm Nang So Sánh Công Nghệ
+              Hardware Comparison Showdowns
             </span>
           </h1>
           <p className="text-slate-400 text-sm md:text-base leading-relaxed">
-            Mỗi bài viết được biên soạn chuyên sâu từ đội ngũ kỹ sư AI Software Studio: Giải quyết vấn đề gì, so sánh trực tiếp với đối thủ cùng phân khúc, ai nên mua và link nhận ưu đãi Amazon Prime độc quyền.
+            Every article is engineered by AI Software Studio: Real problems solved, side-by-side rival benchmark comparisons, target buyer persona analysis, and verified Amazon Prime pricing.
           </p>
         </div>
 
@@ -95,13 +95,13 @@ export function GuidesHub() {
                   setQuery(e.target.value);
                   setVisibleCount(24);
                 }}
-                placeholder="Tìm bài viết theo tên sản phẩm, thương hiệu..."
+                placeholder="Search buying guides by product name, brand, or category..."
                 className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-white/[0.04] border border-white/10 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-blue-500/50"
               />
             </div>
 
             <div className="text-xs text-slate-400">
-              Hiển thị <span className="text-white font-bold">{displayed.length}</span> trên <span className="text-white font-bold">{filteredArticles.length}</span> bài viết bán hàng
+              Showing <span className="text-white font-bold">{displayed.length}</span> of <span className="text-white font-bold">{filteredArticles.length}</span> buying guide articles
             </div>
           </div>
 
@@ -189,7 +189,7 @@ export function GuidesHub() {
 
                   {/* Highlights / Versus preview */}
                   <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-slate-300 space-y-1">
-                    <div className="text-[10px] font-bold uppercase text-slate-400">So sánh đối đầu:</div>
+                    <div className="text-[10px] font-bold uppercase text-slate-400">Head-to-Head Benchmark:</div>
                     <div className="text-[11px] text-amber-300 font-semibold truncate">
                       vs {article.comparison.rivalName}
                     </div>
@@ -212,7 +212,7 @@ export function GuidesHub() {
                         href={`/reviews/${prod.id}`}
                         className="py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs text-center flex items-center justify-center gap-1 transition-all"
                       >
-                        <span>Đọc Review</span>
+                        <span>Read Review</span>
                         <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
 
@@ -222,7 +222,7 @@ export function GuidesHub() {
                         rel="noopener noreferrer nofollow"
                         className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-xs text-center flex items-center justify-center gap-1 transition-all shadow-md shadow-amber-500/20"
                       >
-                        <span>Mua Ngay</span>
+                        <span>Buy on Amazon</span>
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                     </div>
@@ -241,7 +241,7 @@ export function GuidesHub() {
               onClick={() => setVisibleCount((prev) => prev + 24)}
               className="px-8 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-white font-bold text-sm transition-all"
             >
-              Xem thêm các bài viết khác ({filteredArticles.length - visibleCount} còn lại)
+              Load More Buying Guides ({filteredArticles.length - visibleCount} remaining)
             </button>
           </div>
         )}

@@ -44,7 +44,7 @@ export function Portfolio({ apps }: PortfolioProps) {
       {/* Filter / Counter row */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="text-slate-400 text-sm">
-          Hiển thị <span className="text-white font-semibold">{filteredApps.length}</span> trên <span className="text-white font-semibold">{uniqueApps.length}</span> ứng dụng chính thức
+          Showing <span className="text-white font-semibold">{filteredApps.length}</span> of <span className="text-white font-semibold">{uniqueApps.length}</span> official applications
         </div>
         <div className="relative w-full sm:w-72">
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -52,7 +52,7 @@ export function Portfolio({ apps }: PortfolioProps) {
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Tìm kiếm ứng dụng..."
+            placeholder="Search applications..."
             className="w-full pl-10 pr-4 py-2 rounded-xl bg-white/[0.03] border border-white/10 text-slate-200 placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500/50 focus:bg-white/[0.05] transition-all"
           />
         </div>
@@ -124,7 +124,7 @@ export function Portfolio({ apps }: PortfolioProps) {
                   <div className="flex items-center gap-1.5 mt-1.5 text-emerald-400">
                     <Calendar className="w-4 h-4" />
                     <p className="text-sm font-medium truncate">
-                      Cập nhật: {app.updated}
+                      Updated: {app.updated}
                     </p>
                   </div>
                 )}

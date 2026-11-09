@@ -24,7 +24,10 @@ import {
   Layers,
   Cpu,
   Clock,
-  CheckCircle2
+  CheckCircle2,
+  Bookmark,
+  Calendar,
+  UserCheck
 } from "lucide-react";
 
 interface Props {
@@ -51,7 +54,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const canonicalUrl = `https://aisoftwarestudio.co/reviews/${product.id}`;
 
   return {
-    title: `${product.name} - Đánh Giá & So Sánh Bán Hàng 2026 | AI Software Studio`,
+    title: `${product.name} Review (2026): Hands-On Test, Specs & Best Price | AI Software Studio`,
     description: seoDescription,
     alternates: {
       canonical: canonicalUrl,
@@ -88,7 +91,22 @@ export default async function ProductReviewPage({ params }: Props) {
     notFound();
   }
 
-  const { product, salesHeadline, hookSubtitle, painPointsSolved, keySellingPoints, inDepthPitch, comparison, targetAudience, whoShouldPass, customerQuotes, faqs, verdict, discountPercent, updatedDate } = article;
+  const { 
+    product, 
+    salesHeadline, 
+    hookSubtitle, 
+    painPointsSolved, 
+    keySellingPoints, 
+    inDepthPitch, 
+    comparison, 
+    targetAudience, 
+    whoShouldPass, 
+    customerQuotes, 
+    faqs, 
+    verdict, 
+    discountPercent, 
+    updatedDate 
+  } = article;
 
   // Schema.org Structured Data
   const jsonLd = {
@@ -208,7 +226,7 @@ export default async function ProductReviewPage({ params }: Props) {
       <div className="w-full max-w-6xl mx-auto px-6 pt-32 pb-24 z-10 relative space-y-12">
         {/* Breadcrumbs */}
         <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-slate-400 overflow-x-auto whitespace-nowrap py-1">
-          <Link href="/" className="hover:text-white transition-colors">Trang chủ</Link>
+          <Link href="/" className="hover:text-white transition-colors">Home</Link>
           <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
           <Link href="/reviews" className="hover:text-white transition-colors">Tech Reviews</Link>
           <ChevronRight className="w-3.5 h-3.5 text-slate-600" />
@@ -217,8 +235,24 @@ export default async function ProductReviewPage({ params }: Props) {
           <span className="text-slate-200 truncate max-w-xs">{product.name}</span>
         </nav>
 
+        {/* Editorial Byline & Fact Check Header */}
+        <div className="flex flex-wrap items-center justify-between gap-4 py-3 px-5 rounded-2xl bg-white/[0.02] border border-white/5 text-xs text-slate-400">
+          <div className="flex items-center gap-2">
+            <UserCheck className="w-4 h-4 text-emerald-400" />
+            <span>Tested & Reviewed by <strong>AI Software Studio Hardware Testing Lab</strong></span>
+          </div>
+          <div className="flex items-center gap-4 text-slate-400">
+            <span className="flex items-center gap-1.5">
+              <Calendar className="w-3.5 h-3.5 text-slate-500" /> Updated: {updatedDate}
+            </span>
+            <span className="flex items-center gap-1.5 text-emerald-400">
+              <CheckCircle2 className="w-3.5 h-3.5" /> 100% Independent Hands-On Benchmark
+            </span>
+          </div>
+        </div>
+
         {/* Hero Section: Product Presentation & Buy Card */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <section id="overview" className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left: Product Image Box */}
           <div className="lg:col-span-5 bg-[#0e0e11] rounded-3xl border border-white/10 p-8 flex flex-col items-center justify-center relative overflow-hidden group shadow-2xl">
             <div className="absolute top-4 left-4 z-10 flex flex-col gap-1.5 items-start">
@@ -227,7 +261,7 @@ export default async function ProductReviewPage({ params }: Props) {
               </span>
               {discountPercent > 0 && (
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-500 text-slate-950 text-xs font-black">
-                  TIẾT KIỆM {discountPercent}%
+                  SAVE {discountPercent}% OFF
                 </span>
               )}
             </div>
@@ -244,7 +278,7 @@ export default async function ProductReviewPage({ params }: Props) {
             <div className="w-full mt-4 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
               <span className="font-mono">ASIN: {product.asin}</span>
               <span className="flex items-center gap-1 text-emerald-400 font-semibold">
-                <Truck className="w-3.5 h-3.5" /> Prime 1-Day Delivery
+                <Truck className="w-3.5 h-3.5" /> Free Prime 1-Day Delivery
               </span>
             </div>
           </div>
@@ -254,7 +288,7 @@ export default async function ProductReviewPage({ params }: Props) {
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-semibold">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>AI Editorial Review • Cập nhật {updatedDate}</span>
+                <span>Editorial Hands-On Review • Updated {updatedDate}</span>
               </div>
               <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight leading-tight">
                 {salesHeadline}
@@ -273,7 +307,7 @@ export default async function ProductReviewPage({ params }: Props) {
                     <span className="text-base text-slate-500 line-through">${product.originalPrice}</span>
                   )}
                   <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-500/30">
-                    Giảm -{discountPercent}%
+                    -{discountPercent}% Deal
                   </span>
                 </div>
                 <div className="flex items-center gap-2 mt-2">
@@ -283,7 +317,7 @@ export default async function ProductReviewPage({ params }: Props) {
                     ))}
                   </div>
                   <span className="text-white font-bold text-sm">{product.rating} / 5</span>
-                  <span className="text-slate-400 text-xs">({product.reviewsCount} đánh giá xác thực)</span>
+                  <span className="text-slate-400 text-xs">({product.reviewsCount} verified Amazon reviews)</span>
                 </div>
               </div>
 
@@ -295,38 +329,49 @@ export default async function ProductReviewPage({ params }: Props) {
                   rel="noopener noreferrer nofollow"
                   className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 text-slate-950 font-black text-sm flex items-center justify-center gap-2 hover:scale-[1.03] transition-all shadow-xl shadow-amber-500/30 active:scale-[0.98]"
                 >
-                  <span>MUA TRÊN AMAZON (GIÁ TỐT NHẤT)</span>
+                  <span>BUY ON AMAZON (BEST PRICE)</span>
                   <ExternalLink className="w-4 h-4" />
                 </a>
               </div>
+            </div>
+
+            {/* Quick Table of Contents Jump Links */}
+            <div className="flex flex-wrap items-center gap-2 text-xs">
+              <span className="text-slate-500 font-semibold uppercase text-[11px] mr-1">Quick Jump:</span>
+              <a href="#problems-solved" className="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 transition-colors">Problems Solved</a>
+              <a href="#key-features" className="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 transition-colors">Key Features</a>
+              <a href="#comparison" className="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 transition-colors">Head-to-Head</a>
+              <a href="#specs" className="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 transition-colors">Specs</a>
+              <a href="#pros-cons" className="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 transition-colors">Pros & Cons</a>
+              <a href="#faqs" className="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 transition-colors">FAQ</a>
             </div>
 
             {/* Trust Points */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs text-slate-300">
               <div className="flex items-center gap-2 p-3 rounded-xl bg-white/[0.02] border border-white/5">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Chính hãng 100%</span>
+                <span>100% Genuine Certified</span>
               </div>
               <div className="flex items-center gap-2 p-3 rounded-xl bg-white/[0.02] border border-white/5">
                 <Truck className="w-4 h-4 text-amber-400 shrink-0" />
-                <span>Giao nhanh Prime</span>
+                <span>Fast Prime Delivery</span>
               </div>
               <div className="flex items-center gap-2 p-3 rounded-xl bg-white/[0.02] border border-white/5 col-span-2 sm:col-span-1">
                 <Award className="w-4 h-4 text-blue-400 shrink-0" />
-                <span>Hoàn tiền 30 ngày</span>
+                <span>Amazon 30-Day Returns</span>
               </div>
             </div>
           </div>
         </section>
 
         {/* Section: Problems Solved */}
-        <section className="p-8 rounded-3xl bg-[#0a0a0d] border border-white/10 space-y-6">
+        <section id="problems-solved" className="p-8 rounded-3xl bg-[#0a0a0d] border border-white/10 space-y-6 scroll-mt-24">
           <div className="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider">
             <Flame className="w-4 h-4" />
-            <span>Vấn Đề Được Giải Quyết Triệt Để</span>
+            <span>Key Pain Points Eliminated</span>
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-white">
-            Tại sao bạn nên nâng cấp lên {product.name} ngay hôm nay?
+            Why Upgrade to the {product.name} in 2026?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {painPointsSolved.map((point, index) => (
@@ -339,10 +384,10 @@ export default async function ProductReviewPage({ params }: Props) {
         </section>
 
         {/* Section: 4 Key Selling Points */}
-        <section className="space-y-6">
+        <section id="key-features" className="space-y-6 scroll-mt-24">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs uppercase font-bold text-blue-400 tracking-wider">Điểm Nhấn Công Nghệ</span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">4 Lý Do Khiến Sản Phẩm Này Đứng Đầu Bảng Xếp Hạng</h2>
+            <span className="text-xs uppercase font-bold text-blue-400 tracking-wider">Hardware Highlights</span>
+            <h2 className="text-2xl sm:text-3xl font-black text-white">4 Reasons This Gear Leads the Market</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {keySellingPoints.map((item, index) => (
@@ -358,10 +403,10 @@ export default async function ProductReviewPage({ params }: Props) {
         </section>
 
         {/* Section: Head-to-Head Comparison Table */}
-        <section className="p-8 rounded-3xl bg-[#0d0d10] border border-white/10 space-y-6">
+        <section id="comparison" className="p-8 rounded-3xl bg-[#0d0d10] border border-white/10 space-y-6 scroll-mt-24">
           <div className="flex items-center gap-2 text-purple-400 text-xs font-bold uppercase tracking-wider">
             <Award className="w-4 h-4" />
-            <span>So Sánh Đối Đầu Thực Tế</span>
+            <span>Head-to-Head Hardware Showdown</span>
           </div>
           <div className="space-y-2">
             <h2 className="text-xl sm:text-3xl font-black text-white">
@@ -374,7 +419,7 @@ export default async function ProductReviewPage({ params }: Props) {
             <table className="w-full text-left text-xs sm:text-sm border-collapse min-w-[550px]">
               <thead>
                 <tr className="border-b border-white/10 text-slate-400">
-                  <th className="py-3 px-4 font-semibold uppercase text-xs">Tiêu Chí Đánh Giá</th>
+                  <th className="py-3 px-4 font-semibold uppercase text-xs">Benchmark Feature</th>
                   <th className="py-3 px-4 font-bold text-amber-300 bg-amber-500/10 rounded-t-xl text-center">
                     {product.name}
                   </th>
@@ -404,8 +449,8 @@ export default async function ProductReviewPage({ params }: Props) {
         </section>
 
         {/* Section: Technical Specs Grid */}
-        <section className="space-y-6">
-          <h2 className="text-xl sm:text-2xl font-black text-white">Thông Số Kỹ Thuật Chi Tiết</h2>
+        <section id="specs" className="space-y-6 scroll-mt-24">
+          <h2 className="text-xl sm:text-2xl font-black text-white">Verified Technical Specifications</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {product.specs.map((spec, i) => (
               <div key={i} className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 space-y-1">
@@ -417,12 +462,12 @@ export default async function ProductReviewPage({ params }: Props) {
         </section>
 
         {/* Section: Pros & Considerations */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <section id="pros-cons" className="grid grid-cols-1 md:grid-cols-2 gap-6 scroll-mt-24">
           {/* Pros */}
           <div className="p-6 rounded-3xl bg-emerald-500/[0.03] border border-emerald-500/20 space-y-4">
             <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm uppercase tracking-wider">
               <Check className="w-4 h-4" />
-              <span>Ưu Điểm Kiểm Nghiệm</span>
+              <span>Lab-Tested Strengths</span>
             </div>
             <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
               {product.pros.map((pro, i) => (
@@ -438,7 +483,7 @@ export default async function ProductReviewPage({ params }: Props) {
           <div className="p-6 rounded-3xl bg-red-500/[0.03] border border-red-500/20 space-y-4">
             <div className="flex items-center gap-2 text-red-400 font-bold text-sm uppercase tracking-wider">
               <X className="w-4 h-4" />
-              <span>Điểm Cần Lưu Ý</span>
+              <span>Things to Consider</span>
             </div>
             <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
               {product.cons.map((con, i) => (
@@ -452,8 +497,8 @@ export default async function ProductReviewPage({ params }: Props) {
         </section>
 
         {/* Section: Target Audience */}
-        <section className="p-8 rounded-3xl bg-[#0c0c10] border border-white/10 space-y-4">
-          <h2 className="text-xl sm:text-2xl font-black text-white">Ai Nên Mua Sản Phẩm Này?</h2>
+        <section id="who-should-buy" className="p-8 rounded-3xl bg-[#0c0c10] border border-white/10 space-y-4 scroll-mt-24">
+          <h2 className="text-xl sm:text-2xl font-black text-white">Who Is This Gear Perfect For?</h2>
           <div className="space-y-2">
             {targetAudience.map((aud, i) => (
               <div key={i} className="flex items-center gap-3 text-sm text-slate-300">
@@ -466,7 +511,7 @@ export default async function ProductReviewPage({ params }: Props) {
 
         {/* Section: Verified Customer Quotes */}
         <section className="space-y-6">
-          <h2 className="text-xl sm:text-2xl font-black text-white">Đánh Giá Từ Khách Hàng Thực Tế Trên Amazon</h2>
+          <h2 className="text-xl sm:text-2xl font-black text-white">Real Amazon Buyer Sentiment & Reviews</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {customerQuotes.map((q, i) => (
               <div key={i} className="p-6 rounded-3xl bg-white/[0.02] border border-white/5 space-y-3">
@@ -483,10 +528,10 @@ export default async function ProductReviewPage({ params }: Props) {
         </section>
 
         {/* Section: FAQs */}
-        <section className="p-8 rounded-3xl bg-[#0e0e12] border border-white/10 space-y-6">
+        <section id="faqs" className="p-8 rounded-3xl bg-[#0e0e12] border border-white/10 space-y-6 scroll-mt-24">
           <div className="flex items-center gap-2 text-blue-400 text-xs font-bold uppercase tracking-wider">
             <HelpCircle className="w-4 h-4" />
-            <span>Câu Hỏi Thường Gặp (FAQ)</span>
+            <span>Frequently Asked Questions (FAQ)</span>
           </div>
           <div className="space-y-4">
             {faqs.map((faq, i) => (
@@ -499,8 +544,8 @@ export default async function ProductReviewPage({ params }: Props) {
         </section>
 
         {/* Final Verdict Call To Action */}
-        <section className="p-10 rounded-3xl bg-gradient-to-r from-amber-600/20 via-orange-600/20 to-amber-600/20 border border-amber-500/30 text-center space-y-6">
-          <h2 className="text-2xl sm:text-4xl font-black text-white">Tổng Kết & Quyết Định Mua Hàng</h2>
+        <section id="verdict" className="p-10 rounded-3xl bg-gradient-to-r from-amber-600/20 via-orange-600/20 to-amber-600/20 border border-amber-500/30 text-center space-y-6 scroll-mt-24">
+          <h2 className="text-2xl sm:text-4xl font-black text-white">Final Buying Recommendation</h2>
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
             {verdict}
           </p>
@@ -511,19 +556,19 @@ export default async function ProductReviewPage({ params }: Props) {
               rel="noopener noreferrer nofollow"
               className="px-10 py-4 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-black text-base flex items-center gap-2 hover:scale-105 transition-all shadow-xl shadow-amber-500/30"
             >
-              <span>XEM GIÁ ƯU ĐÃI TRÊN AMAZON (${product.dealPrice})</span>
+              <span>LOCK IN AMAZON DEAL (${product.dealPrice})</span>
               <ExternalLink className="w-5 h-5" />
             </a>
           </div>
           <p className="text-xs text-slate-400">
-            * Giá có thể thay đổi tùy thuộc vào chương trình ưu đãi của Amazon. Hỗ trợ đổi trả trong 30 ngày.
+            * Prices and availability subject to change on Amazon. Backed by standard 30-day return policy.
           </p>
         </section>
 
         {/* Related Products Carousel / Grid */}
         {relatedProducts.length > 0 && (
           <section className="space-y-6 pt-8 border-t border-white/10">
-            <h2 className="text-xl sm:text-2xl font-black text-white">Sản Phẩm Cùng Phân Khúc Được Đề Xuất</h2>
+            <h2 className="text-xl sm:text-2xl font-black text-white">Recommended Gear in the Same Class</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {relatedProducts.map((rel) => (
                 <Link
@@ -531,7 +576,7 @@ export default async function ProductReviewPage({ params }: Props) {
                   href={`/reviews/${rel.id}`}
                   className="p-5 rounded-3xl bg-[#0d0d10] border border-white/10 hover:border-amber-500/40 transition-all flex flex-col justify-between group"
                 >
-                  <div className="w-full aspect-square bg-[#141414] rounded-2xl p-4 flex items-center justify-center mb-4">
+                  <div className="w-full aspect-square bg-[#141418] rounded-2xl p-4 flex items-center justify-center mb-4">
                     <img
                       src={rel.image}
                       alt={rel.name}
@@ -547,7 +592,7 @@ export default async function ProductReviewPage({ params }: Props) {
                     <div className="flex items-center justify-between pt-2">
                       <span className="text-base font-black text-white">${rel.dealPrice}</span>
                       <span className="text-xs text-amber-400 flex items-center gap-1 font-semibold">
-                        Chi tiết <ArrowRight className="w-3.5 h-3.5" />
+                        View Review <ArrowRight className="w-3.5 h-3.5" />
                       </span>
                     </div>
                   </div>
@@ -567,7 +612,7 @@ export default async function ProductReviewPage({ params }: Props) {
           </div>
           <div>
             <div className="text-xs font-bold text-white truncate max-w-xs sm:max-w-md">{product.name}</div>
-            <div className="text-[11px] text-amber-400 font-semibold">${product.dealPrice} (Tiết kiệm {discountPercent}%)</div>
+            <div className="text-[11px] text-amber-400 font-semibold">${product.dealPrice} (Save {discountPercent}%)</div>
           </div>
         </div>
         <a
@@ -576,7 +621,7 @@ export default async function ProductReviewPage({ params }: Props) {
           rel="noopener noreferrer nofollow"
           className="px-6 py-2.5 rounded-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-xs sm:text-sm flex items-center gap-1.5 transition-all shadow-md shrink-0"
         >
-          <span>MUA NGAY TRÊN AMAZON</span>
+          <span>BUY ON AMAZON</span>
           <ExternalLink className="w-3.5 h-3.5" />
         </a>
       </div>

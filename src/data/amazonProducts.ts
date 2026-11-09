@@ -2095,7 +2095,7 @@ export const AMAZON_PRODUCTS: StoreProduct[] = [
     "amazonUrl": "https://www.amazon.com/dp/B09XS7JWHH?tag=aisoftwarestu-20",
     "commissionProfit": "$13.12",
     "shortDesc": "Industry-leading active noise canceling, 30-hour battery life, 8 microphones, and LDAC audio.",
-    "fullDesc": "The gold standard in active noise cancellation. Features dual processors (QN1 + V1) that silence office chatter, airplane engine hum, and café background noise completely.",
+    "fullDesc": "The gold standard in active noise cancellation. Features dual processors (QN1 + V1) that silence office chatter, airplane engine hum, and cafe background noise completely.",
     "specs": [
       {
         "label": "Battery Life",

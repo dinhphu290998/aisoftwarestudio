@@ -489,7 +489,7 @@ export function Storefront() {
                         className="w-full py-2 px-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white text-xs font-semibold transition-colors flex items-center justify-center gap-1"
                       >
                         <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                        <span>Bài Viết Review</span>
+                        <span>Read Review</span>
                       </Link>
 
                       <button
@@ -498,7 +498,7 @@ export function Storefront() {
                         className="w-full py-2 px-2.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-slate-300 hover:text-white text-xs font-medium transition-colors flex items-center justify-center gap-1"
                       >
                         <Info className="w-3.5 h-3.5 text-slate-400" />
-                        <span>Thông Số</span>
+                        <span>Quick Specs</span>
                       </button>
                     </div>
                   </div>
@@ -650,7 +650,7 @@ export function Storefront() {
                   className="w-full sm:w-auto px-5 py-3 rounded-full bg-white/10 hover:bg-white/15 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all"
                 >
                   <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Đọc Toàn Bộ Bài Viết & So Sánh →</span>
+                  <span>Read Full Review & Showdown →</span>
                 </Link>
                 <a
                   href={activeModalProduct.amazonUrl}
@@ -658,7 +658,7 @@ export function Storefront() {
                   rel="noopener noreferrer nofollow"
                   className="w-full sm:w-auto px-7 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 font-black text-sm flex items-center justify-center gap-2 hover:scale-105 transition-all shadow-lg shadow-amber-500/25"
                 >
-                  <span>Mua Trên Amazon</span>
+                  <span>Buy on Amazon</span>
                   <ExternalLink className="w-4 h-4" />
                 </a>
               </div>
