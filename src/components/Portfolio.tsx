@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Download, ExternalLink, Calendar, Search, RefreshCw, CheckCircle2, Star } from "lucide-react";
+import { Download, ExternalLink, Calendar, Search, RefreshCw, CheckCircle2 } from "lucide-react";
 import type { AppData } from "@/lib/playstore";
 
 interface PortfolioProps {
@@ -158,20 +158,12 @@ export function Portfolio({ apps }: PortfolioProps) {
                 </div>
               )}
               
-              <div className="absolute top-3 right-3 flex items-center gap-2 z-10">
-                {app.scoreText && app.scoreText !== "0" && app.scoreText !== "0.0" && (
-                  <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-500/90 backdrop-blur-md shadow-md border border-amber-400/50 text-[11px] font-bold text-white tracking-wide">
-                    <Star className="w-3 h-3 fill-white" />
-                    <span>{app.scoreText}</span>
-                  </div>
-                )}
-                {app.installs >= 1000 && (
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/95 backdrop-blur-md shadow-[0_4px_12px_rgba(16,185,129,0.3)] border border-emerald-400/50 text-[12px] font-bold text-white tracking-wide">
-                    <Download className="w-3.5 h-3.5" />
-                    <span>{formatInstalls(app.installs)}</span>
-                  </div>
-                )}
-              </div>
+              {app.installs >= 1000 && (
+                <div className="absolute top-3 right-3 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/95 backdrop-blur-md shadow-[0_4px_12px_rgba(16,185,129,0.3)] border border-emerald-400/50 text-[12px] font-bold text-white tracking-wide z-10">
+                  <Download className="w-3.5 h-3.5" />
+                  <span>{formatInstalls(app.installs)}</span>
+                </div>
+              )}
 
               {/* Overlay on hover */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
