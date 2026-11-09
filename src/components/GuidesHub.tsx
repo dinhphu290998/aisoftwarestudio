@@ -195,6 +195,30 @@ export function GuidesHub() {
                     </div>
                   </div>
 
+                  {/* Topic Cluster Mini Links */}
+                  <div className="pt-2 border-t border-white/5 space-y-1.5">
+                    <div className="text-[10px] font-bold uppercase text-slate-500 tracking-wider">
+                      Explore Topic Cluster Guides:
+                    </div>
+                    <div className="flex flex-wrap gap-1 text-[11px]">
+                      <Link href={`/reviews/${prod.id}/vs-competitors`} className="px-2 py-0.5 rounded-md bg-white/[0.03] hover:bg-white/[0.08] text-slate-300 hover:text-white transition-colors">
+                        ⚔️ Showdown
+                      </Link>
+                      <Link href={`/reviews/${prod.id}/buyers-guide`} className="px-2 py-0.5 rounded-md bg-white/[0.03] hover:bg-white/[0.08] text-slate-300 hover:text-white transition-colors">
+                        📘 Buyer&apos;s Guide
+                      </Link>
+                      <Link href={`/reviews/${prod.id}/setup-guide`} className="px-2 py-0.5 rounded-md bg-white/[0.03] hover:bg-white/[0.08] text-slate-300 hover:text-white transition-colors">
+                        ⚙️ Setup Guide
+                      </Link>
+                      <Link href={`/reviews/${prod.id}/mistakes-to-avoid`} className="px-2 py-0.5 rounded-md bg-white/[0.03] hover:bg-white/[0.08] text-slate-300 hover:text-white transition-colors">
+                        ⚠️ 5 Mistakes
+                      </Link>
+                      <Link href={`/reviews/${prod.id}/long-term-verdict`} className="px-2 py-0.5 rounded-md bg-white/[0.03] hover:bg-white/[0.08] text-slate-300 hover:text-white transition-colors">
+                        ⏳ Long-Term
+                      </Link>
+                    </div>
+                  </div>
+
                   {/* Pricing & CTA Actions */}
                   <div className="pt-3 border-t border-white/5 space-y-3">
                     <div className="flex items-baseline justify-between">

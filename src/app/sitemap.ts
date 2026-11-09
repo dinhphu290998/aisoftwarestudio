@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { AMAZON_PRODUCTS } from "@/data/amazonProducts";
+import { CLUSTER_TYPES } from "@/lib/clusterArticles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://aisoftwarestudio.co";
@@ -57,13 +58,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  // All 102 individual product sales reviews & buyer guide articles
-  const productPages: MetadataRoute.Sitemap = AMAZON_PRODUCTS.map((product) => ({
+  // All 102 individual product pillar review pages
+  const productPillarPages: MetadataRoute.Sitemap = AMAZON_PRODUCTS.map((product) => ({
     url: `${baseUrl}/reviews/${product.id}`,
     lastModified: now,
     changeFrequency: "weekly",
-    priority: 0.8,
+    priority: 0.85,
   }));
 
-  return [...staticPages, ...productPages];
+  // All 510 Topic Cluster sub-articles (5 distinct SEO articles per product)
+  const clusterPages: MetadataRoute.Sitemap = [];
+  for (const product of AMAZON_PRODUCTS) {
+    for (const type of CLUSTER_TYPES) {
+      clusterPages.push({
+        url: `${baseUrl}/reviews/${product.id}/${type.slug}`,
+        lastModified: now,
+        changeFrequency: "weekly",
+        priority: 0.80,
+      });
+    }
+  }
+
+  return [...staticPages, ...productPillarPages, ...clusterPages];
 }

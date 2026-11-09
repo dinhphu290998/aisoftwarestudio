@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { AMAZON_PRODUCTS } from "@/data/amazonProducts";
 import { getSalesArticleById } from "@/lib/salesArticles";
+import { CLUSTER_TYPES } from "@/lib/clusterArticles";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { 
@@ -361,6 +362,50 @@ export default async function ProductReviewPage({ params }: Props) {
                 <span>Amazon 30-Day Returns</span>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Topic Cluster: Dedicated In-Depth SEO Guides */}
+        <section className="p-8 rounded-3xl bg-[#0c0c10] border border-blue-500/20 space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
+            <div>
+              <div className="inline-flex items-center gap-2 text-blue-400 text-xs font-bold uppercase tracking-wider mb-1">
+                <Layers className="w-4 h-4" />
+                <span>Topic Cluster Architecture • 5 Deep-Dive Guides</span>
+              </div>
+              <h2 className="text-xl sm:text-2xl font-black text-white">
+                Comprehensive Research Guides for {product.name}
+              </h2>
+            </div>
+            <span className="text-xs text-slate-400">
+              Pillar Page + Topic Cluster (Google SEO Standard)
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {CLUSTER_TYPES.map((type) => (
+              <Link
+                key={type.slug}
+                href={`/reviews/${product.id}/${type.slug}`}
+                className="p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-blue-500/40 hover:bg-white/[0.04] transition-all flex flex-col justify-between group space-y-3"
+              >
+                <div className="space-y-1.5">
+                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase bg-blue-500/10 text-blue-300 border border-blue-500/20">
+                    {type.badge}
+                  </span>
+                  <h3 className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors">
+                    {type.label}
+                  </h3>
+                  <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                    {type.description}
+                  </p>
+                </div>
+                <div className="text-xs font-semibold text-blue-400 flex items-center gap-1 pt-2">
+                  <span>Read Full Guide</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
 
