@@ -409,34 +409,26 @@ export default async function ProductReviewPage({ params }: Props) {
           </div>
         </section>
 
-        {/* Section: Problems Solved */}
-        <section id="problems-solved" className="p-8 rounded-3xl bg-[#0a0a0d] border border-white/10 space-y-6 scroll-mt-24">
-          <div className="flex items-center gap-2 text-amber-400 text-xs font-bold uppercase tracking-wider">
-            <Flame className="w-4 h-4" />
-            <span>Key Pain Points Eliminated</span>
-          </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white">
-            Why Upgrade to the {product.name} in 2026?
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {painPointsSolved.map((point, index) => (
-              <div key={index} className="flex items-start gap-3 p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
-                <span className="text-sm text-slate-300 leading-relaxed">{point}</span>
-              </div>
-            ))}
-          </div>
+        {/* Opening Intro Paragraph (80-150 words) */}
+        <section className="text-base sm:text-lg text-slate-300 leading-relaxed font-normal p-6 md:p-8 rounded-3xl bg-white/[0.02] border border-white/5 shadow-xl">
+          <p>{inDepthPitch}</p>
         </section>
 
-        {/* Section: 4 Key Selling Points */}
-        <section id="key-features" className="space-y-6 scroll-mt-24">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs uppercase font-bold text-blue-400 tracking-wider">Hardware Highlights</span>
-            <h2 className="text-2xl sm:text-3xl font-black text-white">4 Reasons This Gear Leads the Market</h2>
+        {/* Section: Selection Criteria for this Category */}
+        <section id="key-features" className="p-8 rounded-3xl bg-[#0a0a0d] border border-white/10 space-y-6 scroll-mt-24">
+          <div className="space-y-1">
+            <span className="text-xs uppercase font-bold text-blue-400 tracking-wider">Evaluation Framework</span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+              Key Selection Criteria for {product.categoryLabel}
+            </h2>
+            <p className="text-slate-400 text-sm">
+              Before purchasing, here are the essential hardware metrics our engineering lab uses to evaluate {product.categoryLabel.toLowerCase()} equipment in 2026:
+            </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
             {keySellingPoints.map((item, index) => (
-              <div key={index} className="p-6 rounded-3xl bg-[#0e0e12] border border-white/10 hover:border-amber-500/30 transition-all space-y-3">
+              <div key={index} className="p-6 rounded-3xl bg-[#0e0e12] border border-white/5 hover:border-blue-500/30 transition-all space-y-2.5">
                 <span className="px-3 py-1 rounded-full text-[10px] font-bold uppercase bg-white/5 text-amber-300 border border-white/10">
                   {item.badge}
                 </span>
@@ -447,110 +439,151 @@ export default async function ProductReviewPage({ params }: Props) {
           </div>
         </section>
 
-        {/* Section: Head-to-Head Comparison Table */}
-        <section id="comparison" className="p-8 rounded-3xl bg-[#0d0d10] border border-white/10 space-y-6 scroll-mt-24">
-          <div className="flex items-center gap-2 text-purple-400 text-xs font-bold uppercase tracking-wider">
-            <Award className="w-4 h-4" />
-            <span>Head-to-Head Hardware Showdown</span>
-          </div>
-          <div className="space-y-2">
-            <h2 className="text-xl sm:text-3xl font-black text-white">
-              {product.name} vs. {comparison.rivalName}
+        {/* Section: In-Depth Product Evaluation & Comparison */}
+        <section id="comparison" className="p-8 rounded-3xl bg-[#0d0d10] border border-white/10 space-y-8 scroll-mt-24">
+          <div className="space-y-1">
+            <span className="text-xs uppercase font-bold text-purple-400 tracking-wider">Benchmark Evaluation</span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+              In-Depth Review: {product.name}
             </h2>
-            <p className="text-slate-400 text-sm">{comparison.verdict}</p>
+            <p className="text-slate-400 text-sm">
+              Hands-on lab performance test results, competitor comparison matrix, and verified technical specifications.
+            </p>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs sm:text-sm border-collapse min-w-[550px]">
-              <thead>
-                <tr className="border-b border-white/10 text-slate-400">
-                  <th className="py-3 px-4 font-semibold uppercase text-xs">Benchmark Feature</th>
-                  <th className="py-3 px-4 font-bold text-amber-300 bg-amber-500/10 rounded-t-xl text-center">
-                    {product.name}
-                  </th>
-                  <th className="py-3 px-4 font-bold text-slate-400 text-center">
-                    {comparison.rivalBadge}
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-white/5 text-slate-300">
-                {comparison.criteria.map((row, idx) => (
-                  <tr key={idx} className="hover:bg-white/[0.02]">
-                    <td className="py-3.5 px-4 font-medium text-slate-300">{row.feature}</td>
-                    <td className="py-3.5 px-4 text-center bg-amber-500/5 font-semibold text-white">
-                      <div className="flex items-center justify-center gap-1.5">
-                        <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                        <span>{row.ourScore}</span>
-                      </div>
-                    </td>
-                    <td className="py-3.5 px-4 text-center text-slate-400">
-                      <span>{row.rivalScore}</span>
-                    </td>
+          {/* H3: Comparison Matrix Table */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-bold text-white flex items-center gap-2">
+              <Award className="w-5 h-5 text-amber-400" />
+              <span>Head-to-Head Comparison Matrix: {product.name} vs. {comparison.rivalName}</span>
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-400">{comparison.verdict}</p>
+
+            <div className="overflow-x-auto rounded-2xl border border-white/10 bg-[#08080a]">
+              <table className="w-full text-left text-xs sm:text-sm border-collapse min-w-[550px]">
+                <thead>
+                  <tr className="border-b border-white/10 text-slate-400">
+                    <th className="py-3.5 px-4 font-semibold uppercase text-xs">Benchmark Feature</th>
+                    <th className="py-3.5 px-4 font-bold text-amber-300 bg-amber-500/10 rounded-t-xl text-center">
+                      {product.name}
+                    </th>
+                    <th className="py-3.5 px-4 font-bold text-slate-400 text-center">
+                      {comparison.rivalBadge}
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* Section: Technical Specs Grid */}
-        <section id="specs" className="space-y-6 scroll-mt-24">
-          <h2 className="text-xl sm:text-2xl font-black text-white">Verified Technical Specifications</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {product.specs.map((spec, i) => (
-              <div key={i} className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 space-y-1">
-                <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">{spec.label}</div>
-                <div className="text-sm font-bold text-white">{spec.value}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Section: Pros & Considerations */}
-        <section id="pros-cons" className="grid grid-cols-1 md:grid-cols-2 gap-6 scroll-mt-24">
-          {/* Pros */}
-          <div className="p-6 rounded-3xl bg-emerald-500/[0.03] border border-emerald-500/20 space-y-4">
-            <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm uppercase tracking-wider">
-              <Check className="w-4 h-4" />
-              <span>Lab-Tested Strengths</span>
+                </thead>
+                <tbody className="divide-y divide-white/5 text-slate-300">
+                  {comparison.criteria.map((row, idx) => (
+                    <tr key={idx} className="hover:bg-white/[0.02]">
+                      <td className="py-3.5 px-4 font-medium text-slate-300">{row.feature}</td>
+                      <td className="py-3.5 px-4 text-center bg-amber-500/5 font-semibold text-white">
+                        <div className="flex items-center justify-center gap-1.5">
+                          <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                          <span>{row.ourScore}</span>
+                        </div>
+                      </td>
+                      <td className="py-3.5 px-4 text-center text-slate-400">
+                        <span>{row.rivalScore}</span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
-              {product.pros.map((pro, i) => (
-                <li key={i} className="flex items-start gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                  <span>{pro}</span>
-                </li>
-              ))}
-            </ul>
           </div>
 
-          {/* Cons */}
-          <div className="p-6 rounded-3xl bg-red-500/[0.03] border border-red-500/20 space-y-4">
-            <div className="flex items-center gap-2 text-red-400 font-bold text-sm uppercase tracking-wider">
-              <X className="w-4 h-4" />
-              <span>Things to Consider</span>
-            </div>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
-              {product.cons.map((con, i) => (
-                <li key={i} className="flex items-start gap-2.5">
-                  <X className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
-                  <span>{con}</span>
-                </li>
+          {/* H3: Technical Specs Grid */}
+          <div className="space-y-4 pt-4 border-t border-white/5">
+            <h3 className="text-lg font-bold text-white">
+              Verified Technical Specifications
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+              {product.specs.map((spec, i) => (
+                <div key={i} className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 space-y-1">
+                  <div className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">{spec.label}</div>
+                  <div className="text-sm font-bold text-white">{spec.value}</div>
+                </div>
               ))}
-            </ul>
+            </div>
+          </div>
+
+          {/* H3: Pros & Cons */}
+          <div className="space-y-4 pt-4 border-t border-white/5">
+            <h3 className="text-lg font-bold text-white">
+              Lab-Tested Strengths & Considerations
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-6 rounded-3xl bg-emerald-500/[0.03] border border-emerald-500/20 space-y-4">
+                <div className="flex items-center gap-2 text-emerald-400 font-bold text-sm uppercase tracking-wider">
+                  <Check className="w-4 h-4" />
+                  <span>Lab-Tested Strengths</span>
+                </div>
+                <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
+                  {product.pros.map((pro, i) => (
+                    <li key={i} className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                      <span>{pro}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="p-6 rounded-3xl bg-red-500/[0.03] border border-red-500/20 space-y-4">
+                <div className="flex items-center gap-2 text-red-400 font-bold text-sm uppercase tracking-wider">
+                  <X className="w-4 h-4" />
+                  <span>Things to Consider</span>
+                </div>
+                <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
+                  {product.cons.map((con, i) => (
+                    <li key={i} className="flex items-start gap-2.5">
+                      <X className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                      <span>{con}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Section: Target Audience */}
-        <section id="who-should-buy" className="p-8 rounded-3xl bg-[#0c0c10] border border-white/10 space-y-4 scroll-mt-24">
-          <h2 className="text-xl sm:text-2xl font-black text-white">Who Is This Gear Perfect For?</h2>
-          <div className="space-y-2">
-            {targetAudience.map((aud, i) => (
-              <div key={i} className="flex items-center gap-3 text-sm text-slate-300">
-                <ThumbsUp className="w-4 h-4 text-amber-400 shrink-0" />
-                <span>{aud}</span>
-              </div>
-            ))}
+        {/* Section: Buying Advice & Mistakes to Avoid */}
+        <section id="who-should-buy" className="p-8 rounded-3xl bg-[#0c0c10] border border-white/10 space-y-6 scroll-mt-24">
+          <div className="space-y-1">
+            <span className="text-xs uppercase font-bold text-emerald-400 tracking-wider">Buyer Insights</span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
+              Buying Advice & Experience
+            </h2>
+            <p className="text-slate-400 text-sm">
+              Guidance on ideal user personas and common pitfalls to steer clear of.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <h3 className="text-lg font-bold text-white">
+              Who Is This Gear Perfect For?
+            </h3>
+            <div className="space-y-2">
+              {targetAudience.map((aud, i) => (
+                <div key={i} className="flex items-center gap-3 text-sm text-slate-300">
+                  <ThumbsUp className="w-4 h-4 text-amber-400 shrink-0" />
+                  <span>{aud}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-4 pt-4 border-t border-white/5">
+            <h3 className="text-lg font-bold text-white">
+              Who Should Pass or Consider Other Options
+            </h3>
+            <div className="space-y-2">
+              {whoShouldPass.map((pass, i) => (
+                <div key={i} className="flex items-center gap-3 text-sm text-slate-400">
+                  <span className="text-slate-500">•</span>
+                  <span>{pass}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
