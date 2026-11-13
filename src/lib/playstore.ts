@@ -40,7 +40,8 @@ export const MONITORED_APP_IDS = [
   'com.aihome.decor',
   'com.elp.student',
   'com.aisoftwarestudio.callerid',
-  'com.vn.soha.express'
+  'com.vn.soha.express',
+  'com.docuscan.pdfscanner'
 ];
 
 // Complete real snapshot of all 24 apps from Google Play in Global English
@@ -332,6 +333,18 @@ export const FALLBACK_REAL_APPS: AppData[] = [
     "developer": "AI Software Partner",
     "updated": "Feb 26, 2026",
     "updatedTimestamp": 1772100000000
+  },
+  {
+    "title": "DocuScan: PDF Reader & Editor",
+    "link": "https://play.google.com/store/apps/details?id=com.docuscan.pdfscanner",
+    "icon": "https://play-lh.googleusercontent.com/zxcvbnmasdfghjklqwertyuiop1234567890ZXCVBNMASDFGHJ",
+    "developerId": "Inception - AI Software",
+    "installs": 100,
+    "headerImage": "https://play-lh.googleusercontent.com/Hv7nPSilW77XLxn7R1xRhB27r01en73b2cW3iU2aMzXARMhopLNzGLEuT2xz3mHoxhS-tdHgjgAYW6WqYjgQ9Q",
+    "scoreText": "",
+    "developer": "Inception - AI Software",
+    "updated": "Nov 13, 2026",
+    "updatedTimestamp": 1794500000000
   }
 ];
 
