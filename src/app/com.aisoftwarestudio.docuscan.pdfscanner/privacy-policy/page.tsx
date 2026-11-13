@@ -6,9 +6,9 @@ import { ShieldCheck, FileText, Camera, HardDrive, CheckCircle2, Lock, EyeOff } 
 
 export const metadata = {
   title: "Privacy Policy - DocuScan: PDF Reader & Editor | AI Software Studio",
-  description: "Official Privacy Policy for DocuScan: PDF Reader & Editor (com.docuscan.pdfscanner) developed by Inception and AI Software Studio. 100% on-device document processing.",
+  description: "Official Privacy Policy for DocuScan: PDF Reader & Editor (com.aisoftwarestudio.docuscan.pdfscanner) developed by Inception and AI Software Studio. 100% on-device document processing.",
   alternates: {
-    canonical: "https://aisoftwarestudio.co/com.docuscan.pdfscanner/privacy-policy",
+    canonical: "https://aisoftwarestudio.co/com.aisoftwarestudio.docuscan.pdfscanner/privacy-policy",
   },
 };
 
@@ -34,7 +34,7 @@ export default function PrivacyPolicy() {
         <div className="w-full bg-[#0a0a0a]/85 p-8 md:p-14 rounded-[2rem] border border-white/10 backdrop-blur-2xl shadow-2xl">
           <div className="border-b border-white/10 pb-8 mb-8">
             <div className="text-xs font-mono text-blue-400 uppercase tracking-wider mb-2">
-              Package ID: com.docuscan.pdfscanner
+              Package ID: com.aisoftwarestudio.docuscan.pdfscanner
             </div>
             <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
               Privacy Policy
@@ -192,7 +192,7 @@ export default function PrivacyPolicy() {
               </p>
               <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10 font-mono text-sm text-slate-300 space-y-1">
                 <div>Application: DocuScan: PDF Reader &amp; Editor</div>
-                <div>Package ID: com.docuscan.pdfscanner</div>
+                <div>Package ID: com.aisoftwarestudio.docuscan.pdfscanner</div>
                 <div>Partner: Inception - AI Software</div>
                 <div>Developer Email: <a href="mailto:support@aisoftwarestudio.co" className="text-blue-400 hover:underline">support@aisoftwarestudio.co</a></div>
                 <div>Alternative Email: <a href="mailto:aisoftwaresupport@gmail.com" className="text-blue-400 hover:underline">aisoftwaresupport@gmail.com</a></div>
